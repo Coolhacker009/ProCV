@@ -15,8 +15,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: Container(
-        color: Colors.amber,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("ProCV"),
+        ),
+        body: Center(
+          child: FlutterLogo(
+            size: 200,
+          ),
+        ),
       ),
     );
   }
