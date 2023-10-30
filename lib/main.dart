@@ -16,14 +16,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("ProCV"),
-        ),
         body: Center(
-          child: FlutterLogo(
-            size: 200,
-          ),
-        ),
+            child: Image(
+          image: AssetImage("assets/img/logo.png"),
+        )),
       ),
     );
   }
