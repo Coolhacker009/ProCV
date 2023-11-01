@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/pages/home.dart';
+import 'package:pro_cv/pages/signup.dart';
 import 'package:pro_cv/pages/start_screens/OnBoardingScreen.dart';
 import 'package:pro_cv/pages/start_screens/start_screen1.dart';
 import 'package:pro_cv/pages/start_screens/start_screen2.dart';
@@ -22,8 +23,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        theme: ThemeData(fontFamily: "Poppins"),
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        home: OnboardingScreen());
+        home: Signup());
   }
 }

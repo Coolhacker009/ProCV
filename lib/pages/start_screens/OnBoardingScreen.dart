@@ -28,18 +28,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         Container(
           alignment: Alignment(0, 0.60),
           child: TextButton(
-              child: Text("Commencez".toUpperCase(),
+              child: Text("Commencez",
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
-                      color: myPurple)),
+                      color: Colors.white)),
               style: ButtonStyle(
                   padding:
                       MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(15)),
                   foregroundColor: MaterialStateProperty.all<Color>(myPurple),
+                  backgroundColor: MaterialStateProperty.all<Color>(myPurple),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18.0),
+                          borderRadius: BorderRadius.circular(30.0),
                           side: BorderSide(color: myPurple)))),
               onPressed: () => null),
         ),
@@ -62,7 +63,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   onTap: () {
                     _controller.previousPage(
                         duration: Duration(milliseconds: 500),
-                        curve: Curves.easeInOutBack);
+                        curve: Curves.easeIn);
                   },
                 ),
 
