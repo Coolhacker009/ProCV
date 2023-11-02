@@ -11,14 +11,16 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: new AppBar(
-      title: new Text("Pablo Picasso"),
-      leading: new Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: new Material(
-          shape: new CircleBorder(),
-        ),
+      appBar: AppBar(
+        toolbarHeight: 0.0,
       ),
-    ));
+      body: Row(children: [
+        Container(
+          decoration: BoxDecoration(
+            
+          ),
+        )
+      ],)
+    );
   }
 }

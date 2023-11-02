@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pro_cv/main.dart';
+import 'package:pro_cv/pages/login.dart';
 import 'package:pro_cv/pages/start_screens/start_screen1.dart';
 import 'package:pro_cv/pages/start_screens/start_screen2.dart';
 import 'package:pro_cv/pages/start_screens/start_screen3.dart';
@@ -31,7 +32,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: Text("Commencez",
                   style: TextStyle(
                       fontSize: 18,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w500,
                       color: Colors.white)),
               style: ButtonStyle(
                   padding:
@@ -42,7 +43,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
                           side: BorderSide(color: myPurple)))),
-              onPressed: () => null),
+              onPressed: () => {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Login()))
+                  }),
         ),
 
         Container(

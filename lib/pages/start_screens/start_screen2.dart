@@ -31,7 +31,7 @@ class _StartScreen2State extends State<StartScreen2> {
             child: Text(
               "Remplissez le CV avec vos informations personelles",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 18),
             ),
           ))
         ],

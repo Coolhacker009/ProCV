@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/main.dart';
-import 'package:pro_cv/pages/login.dart';
+import 'package:pro_cv/pages/home.dart';
+import 'package:pro_cv/pages/signup.dart';
 
 final _formKey = GlobalKey<FormState>();
 
-class Signup extends StatefulWidget {
-  const Signup({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<Signup> createState() => _SignupState();
+  State<Login> createState() => _LoginState();
 }
 
-class _SignupState extends State<Signup> {
-  final _formKey = GlobalKey<FormState>();
+class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +36,7 @@ class _SignupState extends State<Signup> {
               Container(
                 margin: EdgeInsets.only(top: 20),
                 child: Text(
-                  "Inscription",
+                  "Connexion",
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 20,
@@ -60,7 +60,7 @@ class _SignupState extends State<Signup> {
                                     margin: EdgeInsets.only(bottom: 10),
                                     child: TextFormField(
                                       decoration: InputDecoration(
-                                          labelText: "Prénom",
+                                          labelText: "Email",
                                           hintText: "Entrez votre prénom",
                                           border: OutlineInputBorder(
                                               borderRadius: BorderRadius.all(
@@ -71,42 +71,8 @@ class _SignupState extends State<Signup> {
                                     margin: EdgeInsets.only(bottom: 10),
                                     child: TextFormField(
                                       decoration: InputDecoration(
-                                          labelText: "Nom",
+                                          labelText: "Mot de passe",
                                           hintText: "Entrez votre nom",
-                                          border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular((28))))),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(bottom: 10),
-                                    child: TextFormField(
-                                      decoration: InputDecoration(
-                                          labelText: "Email",
-                                          hintText: "Entrez votre email",
-                                          border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular((28))))),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(bottom: 10),
-                                    child: TextFormField(
-                                      decoration: InputDecoration(
-                                          labelText: "Mot de passe",
-                                          hintText: "Entrez votre mot de passe",
-                                          border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular((28))))),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(bottom: 10),
-                                    child: TextFormField(
-                                      decoration: InputDecoration(
-                                          labelText: "Mot de passe",
-                                          hintText:
-                                              "Confirmez votre mot de passe",
                                           border: OutlineInputBorder(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular((28))))),
@@ -118,7 +84,7 @@ class _SignupState extends State<Signup> {
                                         child: Padding(
                                           padding: const EdgeInsets.only(
                                               left: 20, right: 20),
-                                          child: Text("S'inscrire",
+                                          child: Text("Connexion",
                                               style: TextStyle(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500,
@@ -140,29 +106,29 @@ class _SignupState extends State<Signup> {
                                                     borderRadius:
                                                         BorderRadius.circular(25.0),
                                                     side: BorderSide(color: myPurple)))),
-                                        onPressed: () => null),
+                                        onPressed: () => {Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()))}),
                                   ),
                                   Container(
                                     margin: EdgeInsets.only(bottom: 2, top: 10),
-                                    child: Text("Vous avez déja un compte ?"),
+                                    child: Text("Vous n'avez de compte ?"),
                                   ),
                                   GestureDetector(
                                     child: Container(
                                       margin: EdgeInsets.only(bottom: 10),
                                       child: Text(
-                                        "Connectez-vous ici",
+                                        "Créez en ici ?",
                                         style: TextStyle(
                                             color: myPurple,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
                                     onTap: () {
-                                      Navigator.pop(
+                                      Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => Login()));
+                                              builder: (context) => Signup()));
                                     },
-                                  ),
+                                  )
                                 ],
                               ),
                             )

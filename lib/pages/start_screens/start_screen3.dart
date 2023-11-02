@@ -31,7 +31,7 @@ class _StartScreen3State extends State<StartScreen3> {
             child: Text(
               "Enregistrez et partagez votre CV",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 18),
             ),
           ))
         ],
