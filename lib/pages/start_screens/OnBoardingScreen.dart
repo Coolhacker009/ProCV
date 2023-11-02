@@ -67,7 +67,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   },
                 ),
 
-                SmoothPageIndicator(controller: _controller, count: 3),
+                SmoothPageIndicator(
+                  controller: _controller,
+                  count: 3,
+                  effect: ExpandingDotsEffect(
+                    activeDotColor: myPurple,
+                  ),
+                ),
                 //button next
 
                 GestureDetector(
