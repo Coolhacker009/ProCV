@@ -19,7 +19,7 @@ class _StartScreen3State extends State<StartScreen3> {
         children: [
           Container(
               child: DelayedAnimation(
-                  delay: 500,
+                  delay: 400,
                   child: Image.asset(
                     "assets/img/img3.png",
                     height: 300,
@@ -27,7 +27,7 @@ class _StartScreen3State extends State<StartScreen3> {
                   ))),
           Container(
               child: DelayedAnimation(
-            delay: 1000,
+            delay: 600,
             child: Text(
               "Enregistrez et partagez votre CV",
               textAlign: TextAlign.center,

@@ -44,7 +44,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
               DelayedAnimation(
-                  delay: 300,
+                  delay: 150,
                   child: Container(
                     margin: EdgeInsets.all(22),
                     child: Form(

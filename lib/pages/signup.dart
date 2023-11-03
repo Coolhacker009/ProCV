@@ -44,7 +44,7 @@ class _SignupState extends State<Signup> {
                 ),
               ),
               DelayedAnimation(
-                  delay: 300,
+                  delay: 150,
                   child: Container(
                     margin: EdgeInsets.all(22),
                     child: Form(

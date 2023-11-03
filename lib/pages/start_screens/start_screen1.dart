@@ -19,7 +19,7 @@ class _StartScreen1State extends State<StartScreen1> {
         children: [
           Container(
               child: DelayedAnimation(
-                  delay: 500,
+                  delay: 400,
                   child: Image.asset(
                     "assets/img/img1.png",
                     height: 300,
@@ -27,7 +27,7 @@ class _StartScreen1State extends State<StartScreen1> {
                   ))),
           Container(
               child: DelayedAnimation(
-            delay: 1000,
+            delay: 600,
             child: Text(
               "Choisissez le modèle de CV qui vous correspond",
               textAlign: TextAlign.center,

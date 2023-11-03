@@ -24,22 +24,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemUiOverlayStyle systemUiOverlayStyle = const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarBrightness: Brightness.light,
-        systemNavigationBarIconBrightness: Brightness.dark,
-        systemNavigationBarColor: Colors.transparent,
-        systemNavigationBarDividerColor: Colors.transparent,
-        systemNavigationBarContrastEnforced: false,
-        systemStatusBarContrastEnforced: false);
+    // SystemUiOverlayStyle systemUiOverlayStyle = const SystemUiOverlayStyle(
+    //     statusBarColor: Colors.transparent,
+    //     statusBarBrightness: Brightness.light,
+    //     systemNavigationBarIconBrightness: Brightness.dark,
+    //     systemNavigationBarColor: Colors.transparent,
+    //     systemNavigationBarDividerColor: Colors.transparent,
+    //     systemNavigationBarContrastEnforced: false,
+    //     systemStatusBarContrastEnforced: false);
 
-    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+    // SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+    //     overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
 
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
-        overlays: [SystemUiOverlay.bottom]);
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
+    //     overlays: [SystemUiOverlay.bottom]);
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     return MaterialApp(
         theme: ThemeData(primaryColor: myPurple, fontFamily: "Poppins"),
         title: 'Flutter Demo',
