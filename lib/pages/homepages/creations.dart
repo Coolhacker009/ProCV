@@ -15,7 +15,7 @@ class _CreationsTapState extends State<CreationsTap> {
     return SingleChildScrollView(
         child: Center(
             child: Column(children: [
-      header(title: "Créations", imgLink: "assets/img/img1.png"),
+      header(title: "Créations", imgLink: "assets/img/folder2.png"),
       card(
           context: context,
           imgLink: 'assets/img/avatar.jpg',

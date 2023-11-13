@@ -59,7 +59,7 @@ class _HomeTapState extends State<HomeTap> {
                         borderRadius: BorderRadius.circular(20)),
                     child: Column(
                       children: [
-                        Image.asset("assets/img/img1.png"),
+                        Image.asset("assets/img/folder.png"),
                         Text("Mes créations",
                             style: TextStyle(fontWeight: FontWeight.w600))
                       ],
@@ -80,7 +80,7 @@ class _HomeTapState extends State<HomeTap> {
                         borderRadius: BorderRadius.circular(20)),
                     child: Column(
                       children: [
-                        Image.asset("assets/img/img1.png"),
+                        Image.asset("assets/img/notepad.png"),
                         Text("Mes brouillons",
                             style: TextStyle(fontWeight: FontWeight.w600))
                       ],

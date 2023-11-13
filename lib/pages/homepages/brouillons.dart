@@ -15,7 +15,7 @@ class _BrouillonTapState extends State<BrouillonTap> {
     return SingleChildScrollView(
         child: Center(
             child: Column(children: [
-      header(title: "Brouillons", imgLink: "assets/img/img1.png"),
+      header(title: "Brouillons", imgLink: "assets/img/notepad.png"),
       card(
           context: context,
           imgLink: 'assets/img/home.png',
