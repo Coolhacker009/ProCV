@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pro_cv/main.dart';
 import 'package:pro_cv/pages/login.dart';
 import 'package:pro_cv/pages/start_screens/start_screen1.dart';
 import 'package:pro_cv/pages/start_screens/start_screen2.dart';
 import 'package:pro_cv/pages/start_screens/start_screen3.dart';
+import 'package:pro_cv/utils/constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {

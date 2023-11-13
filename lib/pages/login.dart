@@ -3,6 +3,7 @@ import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/main.dart';
 import 'package:pro_cv/pages/home.dart';
 import 'package:pro_cv/pages/signup.dart';
+import 'package:pro_cv/utils/constants.dart';
 
 final _formKey = GlobalKey<FormState>();
 

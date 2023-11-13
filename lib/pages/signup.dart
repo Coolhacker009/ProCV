@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pro_cv/delayed_animation.dart';
-import 'package:pro_cv/main.dart';
 import 'package:pro_cv/pages/login.dart';
+import 'package:pro_cv/utils/constants.dart';
 
 final _formKey = GlobalKey<FormState>();
 

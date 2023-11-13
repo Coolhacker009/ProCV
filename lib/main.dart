@@ -10,12 +10,13 @@ import 'package:pro_cv/pages/start_screens/OnBoardingScreen.dart';
 import 'package:pro_cv/pages/start_screens/start_screen1.dart';
 import 'package:pro_cv/pages/start_screens/start_screen2.dart';
 import 'package:pro_cv/pages/start_screens/start_screen3.dart';
+import 'package:pro_cv/utils/constants.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-const myPurple = const Color(0xff5E358A);
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
