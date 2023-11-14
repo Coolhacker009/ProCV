@@ -5,6 +5,7 @@ import 'package:pro_cv/pages/homepages/home.dart';
 import 'package:pro_cv/pages/homepages/models_cv.dart';
 import 'package:pro_cv/pages/homepages/notifications.dart';
 import 'package:pro_cv/pages/homepages/profile.dart';
+import 'package:pro_cv/utils/constants.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
     CreationsTap(),
     BrouillonTap(),
     ProfileTap(),
-    NotificationsTap() // index 5
   ];
   @override
   Widget build(BuildContext context) {
@@ -35,16 +35,16 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<BottomNavigationBarItem> items = [
-    const BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-    const BottomNavigationBarItem(
+    BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
+    BottomNavigationBarItem(
         icon: Icon(Icons.file_copy), label: "", backgroundColor: Colors.amber),
-    const BottomNavigationBarItem(
+    BottomNavigationBarItem(
         icon: Icon(
           Icons.folder_open,
         ),
         label: ""),
-    const BottomNavigationBarItem(icon: Icon(Icons.edit_document), label: ""),
-    const BottomNavigationBarItem(icon: Icon(Icons.person), label: "")
+    BottomNavigationBarItem(icon: Icon(Icons.edit_document), label: ""),
+    BottomNavigationBarItem(icon: Icon(Icons.person), label: "")
   ];
 
   bottomNavigationBar() {
@@ -53,6 +53,14 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3), // changes position of shadow
+              ),
+            ],
             borderRadius: BorderRadius.only(
                 topRight: Radius.circular(30), topLeft: Radius.circular(30)),
             color: Colors.white),
@@ -61,10 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
           child: BottomNavigationBar(
-            currentIndex: 0,
+            currentIndex: _currentIndex,
             //  fixedColor: primaryF,
-            showUnselectedLabels: false,
-            showSelectedLabels: false,
+
             backgroundColor: Colors.transparent,
             elevation: 0,
             onTap: (index) {
@@ -75,7 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             // unselectedItemColor: SecondaryText,
             items: items,
-
+            selectedItemColor: myPurple,
+            iconSize: 35,
             type: BottomNavigationBarType.fixed,
           ),
         ),
