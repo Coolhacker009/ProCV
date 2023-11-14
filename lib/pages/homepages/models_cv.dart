@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/utils/constants.dart';
 import 'package:pro_cv/widgets/header.dart';
 
@@ -16,7 +17,10 @@ class _ModelsCVTapState extends State<ModelsCVTap> {
       child: Center(
         child: Column(
           children: [
-            header(title: "Modèles CV", imgLink: "assets/img/img1.png"),
+            DelayedAnimation(
+                delay: 5,
+                child: header(
+                    title: "Modèles CV", imgLink: "assets/img/img1.png")),
             Material(
               elevation: 10,
               shape: RoundedRectangleBorder(

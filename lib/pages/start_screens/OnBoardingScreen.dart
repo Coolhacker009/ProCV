@@ -29,9 +29,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         Container(
           alignment: Alignment(0, 0.60),
           child: TextButton(
+        
               child: Text("Commencez",
                   style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: Colors.white)),
               style: ButtonStyle(
@@ -61,7 +62,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     "Précedent",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                      fontSize: 14,
                     ),
                   ),
                   onTap: () {
@@ -74,8 +75,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 SmoothPageIndicator(
                   controller: _controller,
                   count: 3,
-                  effect: ExpandingDotsEffect(
+                  effect: JumpingDotEffect(
                     activeDotColor: myPurple,
+                    dotHeight: 20,
+                    dotWidth: 20,
+                    spacing: 10,
+                    verticalOffset: 10,
                   ),
                 ),
                 //button next

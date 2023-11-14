@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/widgets/card.dart';
 import 'package:pro_cv/widgets/header.dart';
 
@@ -15,7 +16,9 @@ class _CreationsTapState extends State<CreationsTap> {
     return SingleChildScrollView(
         child: Center(
             child: Column(children: [
-      header(title: "Créations", imgLink: "assets/img/folder2.png"),
+      DelayedAnimation(
+          delay: 5,
+          child: header(title: "Créations", imgLink: "assets/img/folder2.png")),
       card(
           context: context,
           imgLink: 'assets/img/avatar.jpg',

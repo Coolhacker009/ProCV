@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currenIndex = 5;
+  int _currentIndex = 0;
   List<Widget> pages = [
     HomeTap(),
     ModelsCVTap(),
@@ -29,14 +29,15 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         toolbarHeight: 0.0,
       ),
-      body: pages[_currenIndex],
+      body: pages[_currentIndex],
       bottomNavigationBar: bottomNavigationBar(),
     );
   }
 
   List<BottomNavigationBarItem> items = [
     const BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-    const BottomNavigationBarItem(icon: Icon(Icons.file_copy), label: ""),
+    const BottomNavigationBarItem(
+        icon: Icon(Icons.file_copy), label: "", backgroundColor: Colors.amber),
     const BottomNavigationBarItem(
         icon: Icon(
           Icons.folder_open,
@@ -66,9 +67,9 @@ class _HomeScreenState extends State<HomeScreen> {
             showSelectedLabels: false,
             backgroundColor: Colors.transparent,
             elevation: 0,
-            onTap: (int index) {
+            onTap: (index) {
               setState(() {
-                _currenIndex = index;
+                _currentIndex = index;
                 // print(index);
               });
             },

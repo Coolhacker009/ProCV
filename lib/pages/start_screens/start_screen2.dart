@@ -19,7 +19,7 @@ class _StartScreen2State extends State<StartScreen2> {
         children: [
           Container(
               child: DelayedAnimation(
-                  delay: 400,
+                  delay: 200,
                   child: Image.asset(
                     "assets/img/img2.png",
                     height: 300,
@@ -27,11 +27,11 @@ class _StartScreen2State extends State<StartScreen2> {
                   ))),
           Container(
               child: DelayedAnimation(
-            delay: 600,
+            delay: 300,
             child: Text(
               "Remplissez le CV avec vos informations personelles",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 17),
             ),
           ))
         ],

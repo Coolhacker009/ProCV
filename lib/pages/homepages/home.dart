@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/widgets/header.dart';
 
 class HomeTap extends StatefulWidget {
@@ -14,7 +15,9 @@ class _HomeTapState extends State<HomeTap> {
     return Center(
         child: Column(
       children: [
-        header(title: "Accueil", imgLink: "assets/img/home.png"),
+        DelayedAnimation(
+            delay: 5,
+            child: header(title: "Accueil", imgLink: "assets/img/home.png")),
         SizedBox(
           height: 20,
         ),

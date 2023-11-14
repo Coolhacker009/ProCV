@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/widgets/card.dart';
 import 'package:pro_cv/widgets/header.dart';
 
@@ -15,7 +16,10 @@ class _BrouillonTapState extends State<BrouillonTap> {
     return SingleChildScrollView(
         child: Center(
             child: Column(children: [
-      header(title: "Brouillons", imgLink: "assets/img/notepad.png"),
+      DelayedAnimation(
+          delay: 5,
+          child:
+              header(title: "Brouillons", imgLink: "assets/img/notepad.png")),
       card(
           context: context,
           imgLink: 'assets/img/home.png',
