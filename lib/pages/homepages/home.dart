@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pro_cv/delayed_animation.dart';
+import 'package:pro_cv/pages/homepages/models_cv.dart';
 import 'package:pro_cv/widgets/header.dart';
 
 class HomeTap extends StatefulWidget {
@@ -39,7 +40,15 @@ class _HomeTapState extends State<HomeTap> {
                         borderRadius: BorderRadius.circular(20)),
                     child: Column(
                       children: [
-                        Image.asset("assets/img/img1.png"),
+                        GestureDetector(
+                          child: Image.asset("assets/img/img1.png"),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ModelsCVTap()));
+                          },
+                        ),
                         Text(
                           "Modèles CV",
                           style: TextStyle(fontWeight: FontWeight.w600),

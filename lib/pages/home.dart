@@ -35,16 +35,20 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<BottomNavigationBarItem> items = [
-    BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
     BottomNavigationBarItem(
-        icon: Icon(Icons.file_copy), label: "", backgroundColor: Colors.amber),
+        icon: Icon(Icons.home), label: "Acceuil", backgroundColor: myPurple),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.file_copy),
+        label: "Modèles",
+        backgroundColor: Colors.amber),
     BottomNavigationBarItem(
         icon: Icon(
           Icons.folder_open,
         ),
-        label: ""),
-    BottomNavigationBarItem(icon: Icon(Icons.edit_document), label: ""),
-    BottomNavigationBarItem(icon: Icon(Icons.person), label: "")
+        label: "Créations"),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.edit_document), label: "Brouillons"),
+    BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile")
   ];
 
   bottomNavigationBar() {
@@ -83,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // unselectedItemColor: SecondaryText,
             items: items,
             selectedItemColor: myPurple,
-            iconSize: 35,
+            iconSize: 30,
             type: BottomNavigationBarType.fixed,
           ),
         ),
