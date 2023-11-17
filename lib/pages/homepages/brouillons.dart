@@ -4,7 +4,8 @@ import 'package:pro_cv/widgets/card.dart';
 import 'package:pro_cv/widgets/header.dart';
 
 class BrouillonTap extends StatefulWidget {
-  const BrouillonTap({super.key});
+  Function init;
+  BrouillonTap({super.key, required this.init});
 
   @override
   State<BrouillonTap> createState() => _BrouillonTapState();

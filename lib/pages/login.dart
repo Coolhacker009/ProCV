@@ -15,6 +15,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,6 +67,15 @@ class _LoginState extends State<Login> {
                                           border: OutlineInputBorder(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular((28))))),
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return "Veillez remplir ce champ";
+                                        }
+                                        return null;
+                                      },
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      keyboardType: TextInputType.emailAddress,
                                     ),
                                   ),
                                   Container(
@@ -77,6 +87,14 @@ class _LoginState extends State<Login> {
                                           border: OutlineInputBorder(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular((28))))),
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return "Veillez remplir ce champ";
+                                        }
+                                        return null;
+                                      },
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
                                     ),
                                   ),
                                   Container(
@@ -107,7 +125,16 @@ class _LoginState extends State<Login> {
                                                     borderRadius:
                                                         BorderRadius.circular(25.0),
                                                     side: BorderSide(color: myPurple)))),
-                                        onPressed: () => {Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()))}),
+                                        onPressed: () {
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        HomeScreen()));
+                                          }
+                                        }),
                                   ),
                                   Container(
                                     margin: EdgeInsets.only(bottom: 2, top: 10),

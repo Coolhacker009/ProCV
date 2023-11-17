@@ -3,7 +3,7 @@ import 'package:pro_cv/widgets/card.dart';
 import 'package:pro_cv/widgets/header.dart';
 
 class ExportedPage extends StatefulWidget {
-  const ExportedPage({super.key});
+  const ExportedPage({super.key, required Function(dynamic index) init});
 
   @override
   State<ExportedPage> createState() => _ExportedPageState();
@@ -15,7 +15,7 @@ class _ExportedPageState extends State<ExportedPage> {
     return SingleChildScrollView(
         child: Center(
             child: Column(children: [
-      header(title: "Fichiers Exportés", imgLink: "assets/img/img1.png"),
+      header(title: "Exportés", imgLink: "assets/img/img1.png"),
       card(
           context: context,
           imgLink: 'assets/img/avatar.jpg',

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pro_cv/delayed_animation.dart';
+import 'package:pro_cv/pages/home.dart';
 import 'package:pro_cv/pages/login.dart';
 import 'package:pro_cv/utils/constants.dart';
-
-final _formKey = GlobalKey<FormState>();
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -65,6 +64,14 @@ class _SignupState extends State<Signup> {
                                           border: OutlineInputBorder(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular((28))))),
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return "Veillez remplir ce champ";
+                                        }
+                                        return null;
+                                      },
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
                                     ),
                                   ),
                                   Container(
@@ -76,6 +83,14 @@ class _SignupState extends State<Signup> {
                                           border: OutlineInputBorder(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular((28))))),
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return "Veillez remplir ce champ";
+                                        }
+                                        return null;
+                                      },
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
                                     ),
                                   ),
                                   Container(
@@ -87,6 +102,14 @@ class _SignupState extends State<Signup> {
                                           border: OutlineInputBorder(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular((28))))),
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return "Veillez remplir ce champ";
+                                        }
+                                        return null;
+                                      },
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
                                     ),
                                   ),
                                   Container(
@@ -98,6 +121,14 @@ class _SignupState extends State<Signup> {
                                           border: OutlineInputBorder(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular((28))))),
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return "Veillez remplir ce champ";
+                                        }
+                                        return null;
+                                      },
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
                                     ),
                                   ),
                                   Container(
@@ -110,6 +141,14 @@ class _SignupState extends State<Signup> {
                                           border: OutlineInputBorder(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular((28))))),
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return "Veillez remplir ce champ";
+                                        }
+                                        return null;
+                                      },
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
                                     ),
                                   ),
                                   Container(
@@ -140,7 +179,16 @@ class _SignupState extends State<Signup> {
                                                     borderRadius:
                                                         BorderRadius.circular(25.0),
                                                     side: BorderSide(color: myPurple)))),
-                                        onPressed: () => null),
+                                        onPressed: () {
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        HomeScreen()));
+                                          }
+                                        }),
                                   ),
                                   Container(
                                     margin: EdgeInsets.only(bottom: 2, top: 10),

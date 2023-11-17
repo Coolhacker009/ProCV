@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:pro_cv/delayed_animation.dart';
+import 'package:pro_cv/pages/homepages/creations.dart';
 import 'package:pro_cv/pages/homepages/models_cv.dart';
+import 'package:pro_cv/utils/constants.dart';
 import 'package:pro_cv/widgets/header.dart';
 
 class HomeTap extends StatefulWidget {
-  const HomeTap({super.key});
+  Function init;
+  HomeTap({super.key, required this.init});
 
   @override
   State<HomeTap> createState() => _HomeTapState();
@@ -43,10 +46,13 @@ class _HomeTapState extends State<HomeTap> {
                         GestureDetector(
                           child: Image.asset("assets/img/img1.png"),
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ModelsCVTap()));
+                            setState(() {
+                              widget.init(1);
+                            });
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => ModelsCVTap()));
                           },
                         ),
                         Text(
@@ -71,7 +77,14 @@ class _HomeTapState extends State<HomeTap> {
                         borderRadius: BorderRadius.circular(20)),
                     child: Column(
                       children: [
-                        Image.asset("assets/img/folder.png"),
+                        GestureDetector(
+                          child: Image.asset("assets/img/folder.png"),
+                          onTap: () {
+                            setState(() {
+                              widget.init(2);
+                            });
+                          },
+                        ),
                         Text("Mes créations",
                             style: TextStyle(fontWeight: FontWeight.w600))
                       ],
@@ -92,7 +105,14 @@ class _HomeTapState extends State<HomeTap> {
                         borderRadius: BorderRadius.circular(20)),
                     child: Column(
                       children: [
-                        Image.asset("assets/img/notepad.png"),
+                        GestureDetector(
+                          child: Image.asset("assets/img/notepad.png"),
+                          onTap: () {
+                            setState(() {
+                              widget.init(3);
+                            });
+                          },
+                        ),
                         Text("Mes brouillons",
                             style: TextStyle(fontWeight: FontWeight.w600))
                       ],
@@ -113,7 +133,14 @@ class _HomeTapState extends State<HomeTap> {
                         borderRadius: BorderRadius.circular(20)),
                     child: Column(
                       children: [
-                        Image.asset("assets/img/img3.png"),
+                        GestureDetector(
+                          child: Image.asset("assets/img/img3.png"),
+                          onTap: () {
+                            setState(() {
+                              widget.init(4);
+                            });
+                          },
+                        ),
                         Text("Fichiers Exportés",
                             style: TextStyle(fontWeight: FontWeight.w600))
                       ],

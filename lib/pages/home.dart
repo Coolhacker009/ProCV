@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pro_cv/pages/homepages/brouillons.dart';
 import 'package:pro_cv/pages/homepages/creations.dart';
+import 'package:pro_cv/pages/homepages/exported_page.dart';
 import 'package:pro_cv/pages/homepages/home.dart';
 import 'package:pro_cv/pages/homepages/models_cv.dart';
 import 'package:pro_cv/pages/homepages/notifications.dart';
@@ -15,21 +16,34 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0;
   List<Widget> pages = [
-    HomeTap(),
-    ModelsCVTap(),
-    CreationsTap(),
-    BrouillonTap(),
-    ProfileTap(),
+    // HomeTap(init: change()),
+    // ModelsCVTap(),
+    // CreationsTap(),
+    // BrouillonTap(),
+    // ProfileTap(),
   ];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    pages = [
+      HomeTap(init: change),
+      ModelsCVTap(init: change),
+      CreationsTap(init: change),
+      BrouillonTap(init: change),
+      ExportedPage(init: change),
+      ProfileTap(init: change),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 0.0,
       ),
-      body: pages[_currentIndex],
+      body: pages[currentIndex],
       bottomNavigationBar: bottomNavigationBar(),
     );
   }
@@ -50,6 +64,12 @@ class _HomeScreenState extends State<HomeScreen> {
         icon: Icon(Icons.edit_document), label: "Brouillons"),
     BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile")
   ];
+
+  change(index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
 
   bottomNavigationBar() {
     // initBottomNavigationBarItem(_currenIndex);
@@ -73,14 +93,14 @@ class _HomeScreenState extends State<HomeScreen> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
           child: BottomNavigationBar(
-            currentIndex: _currentIndex,
+            currentIndex: currentIndex,
             //  fixedColor: primaryF,
 
             backgroundColor: Colors.transparent,
             elevation: 0,
             onTap: (index) {
               setState(() {
-                _currentIndex = index;
+                currentIndex = index;
                 // print(index);
               });
             },

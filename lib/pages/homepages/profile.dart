@@ -3,7 +3,8 @@ import 'package:pro_cv/utils/constants.dart';
 import 'package:pro_cv/widgets/custom_buttom.dart';
 
 class ProfileTap extends StatefulWidget {
-  const ProfileTap({super.key});
+  Function init;
+  ProfileTap({super.key, required this.init});
 
   @override
   State<ProfileTap> createState() => _ProfileTapState();
