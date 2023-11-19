@@ -29,12 +29,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         Container(
           alignment: Alignment(0, 0.60),
           child: TextButton(
-        
-              child: Text("Commencez",
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white)),
+              child: Padding(
+                padding: EdgeInsets.only(right: 15, left: 15),
+                child: Text("Commencez",
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white)),
+              ),
               style: ButtonStyle(
                   padding:
                       MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(15)),
