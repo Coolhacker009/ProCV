@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_cv/delayed_animation.dart';
+import 'package:pro_cv/pages/Cv_forms/ajout_education.dart';
 import 'package:pro_cv/pages/Cv_forms/ajout_exp.dart';
-import 'package:pro_cv/pages/Cv_forms/modif_exp.dart';
 import 'package:pro_cv/pages/home.dart';
 import 'package:pro_cv/pages/homepages/cv_forms.dart';
 import 'package:pro_cv/pages/homepages/models_cv.dart';
@@ -10,16 +10,16 @@ import 'package:pro_cv/utils/constants.dart';
 import 'package:pro_cv/widgets/card.dart';
 import 'package:pro_cv/pages/homepages/models_cv.dart';
 
-class Exp_pro extends StatefulWidget {
-  const Exp_pro({super.key});
+class Education extends StatefulWidget {
+  const Education({super.key});
 
   @override
-  State<Exp_pro> createState() => _Exp_proState();
+  State<Education> createState() => _EducationState();
 }
 
-class _Exp_proState extends State<Exp_pro> {
-  final _formKey = GlobalKey<FormState>();
+class _EducationState extends State<Education> {
   @override
+  final _formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -41,14 +41,14 @@ class _Exp_proState extends State<Exp_pro> {
                           size: 40,
                         ),
                         onTap: () {
-                          Navigator.pop(
+                          Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => Cv_forms()));
                         },
                       )),
                   Text(
-                    "Expériences professionnelles",
+                    "Education",
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 18,
@@ -79,14 +79,14 @@ class _Exp_proState extends State<Exp_pro> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Pixel media 2.0',
+                        'DEF',
                         style: TextStyle(fontSize: 18),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Designer',
+                        'Ecole de la cathédrale',
                         style: TextStyle(fontSize: 15),
                       ),
                     ),
@@ -101,22 +101,12 @@ class _Exp_proState extends State<Exp_pro> {
                                 child: Row(
                                   children: [
                                     Container(
-                                      margin: EdgeInsets.only(right: 12),
-                                      child: GestureDetector(
+                                        margin: EdgeInsets.only(right: 12),
                                         child: Icon(
                                           Icons.edit,
                                           size: 30,
                                           color: myPurple,
-                                        ),
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      Modif_exp()));
-                                        },
-                                      ),
-                                    ),
+                                        )),
                                     Icon(
                                       Icons.delete,
                                       size: 30,
@@ -144,7 +134,7 @@ class _Exp_proState extends State<Exp_pro> {
                 child: TextButton(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: Text("Ajouter une expérience",
+                      child: Text("Ajouter éducation",
                           style: TextStyle(
                               fontSize: 17,
                               fontWeight: FontWeight.w600,
@@ -163,12 +153,15 @@ class _Exp_proState extends State<Exp_pro> {
                                     borderRadius: BorderRadius.circular(15.0),
                                     side: BorderSide(color: myPurple)))),
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Ajout_exp()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Ajout_education()));
                     }),
               )),
         ],
       ),
     );
+    ;
   }
 }

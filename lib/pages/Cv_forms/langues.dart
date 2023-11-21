@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:pro_cv/delayed_animation.dart';
+import 'package:pro_cv/pages/Cv_forms/Ajout_langue.dart';
+import 'package:pro_cv/pages/Cv_forms/ajout_education.dart';
 import 'package:pro_cv/pages/Cv_forms/ajout_exp.dart';
 import 'package:pro_cv/pages/Cv_forms/modif_exp.dart';
 import 'package:pro_cv/pages/home.dart';
@@ -10,15 +13,14 @@ import 'package:pro_cv/utils/constants.dart';
 import 'package:pro_cv/widgets/card.dart';
 import 'package:pro_cv/pages/homepages/models_cv.dart';
 
-class Exp_pro extends StatefulWidget {
-  const Exp_pro({super.key});
+class Langues extends StatefulWidget {
+  const Langues({super.key});
 
   @override
-  State<Exp_pro> createState() => _Exp_proState();
+  State<Langues> createState() => _LanguesState();
 }
 
-class _Exp_proState extends State<Exp_pro> {
-  final _formKey = GlobalKey<FormState>();
+class _LanguesState extends State<Langues> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,14 +43,14 @@ class _Exp_proState extends State<Exp_pro> {
                           size: 40,
                         ),
                         onTap: () {
-                          Navigator.pop(
+                          Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => Cv_forms()));
                         },
                       )),
                   Text(
-                    "Expériences professionnelles",
+                    "Langues",
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 18,
@@ -59,7 +61,7 @@ class _Exp_proState extends State<Exp_pro> {
           Container(
             child: Expanded(
                 child: ListView.builder(
-              itemCount: 3,
+              itemCount: 1,
               itemBuilder: (context, index) => Container(
                   child: Container(
                 margin:
@@ -77,58 +79,61 @@ class _Exp_proState extends State<Exp_pro> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.only(left: 20, top: 10),
                       child: Text(
-                        'Pixel media 2.0',
+                        'Français',
                         style: TextStyle(fontSize: 18),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.only(left: 20, top: 10),
                       child: Text(
-                        'Designer',
-                        style: TextStyle(fontSize: 15),
+                        'Niveau',
+                        style: TextStyle(fontSize: 14),
                       ),
                     ),
                     Padding(
                       padding:
-                          const EdgeInsets.only(left: 20, top: 6, bottom: 20),
+                          const EdgeInsets.only(left: 20, top: 2, bottom: 15),
                       child: Container(
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      margin: EdgeInsets.only(right: 12),
-                                      child: GestureDetector(
-                                        child: Icon(
-                                          Icons.edit,
-                                          size: 30,
+                                child: RatingBar.builder(
+                                    initialRating: 0,
+                                    minRating: 1,
+                                    direction: Axis.horizontal,
+                                    allowHalfRating: true,
+                                    itemCount: 5,
+                                    itemPadding:
+                                        EdgeInsets.symmetric(horizontal: 4),
+                                    itemBuilder: (context, _) => Icon(
+                                          Icons.star,
                                           color: myPurple,
+                                          size: 10,
                                         ),
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      Modif_exp()));
-                                        },
-                                      ),
-                                    ),
-                                    Icon(
-                                      Icons.delete,
-                                      size: 30,
-                                      color: myPurple,
-                                    )
-                                  ],
-                                ),
+                                    onRatingUpdate: (rating) {
+                                      print(rating);
+                                    }),
                               ),
                               Container(
-                                margin: EdgeInsets.only(right: 20),
-                                child: Text('2013-2014'),
-                              )
+                                margin: EdgeInsets.only(right: 12),
+                                child: GestureDetector(
+                                  child: Icon(
+                                    Icons.delete,
+                                    size: 30,
+                                    color: myPurple,
+                                  ),
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Cv_forms()));
+                                  },
+                                ),
+                              ),
+                              Container()
                             ]),
                       ),
                     ),
@@ -144,7 +149,7 @@ class _Exp_proState extends State<Exp_pro> {
                 child: TextButton(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: Text("Ajouter une expérience",
+                      child: Text("Ajouter langue",
                           style: TextStyle(
                               fontSize: 17,
                               fontWeight: FontWeight.w600,
@@ -163,8 +168,10 @@ class _Exp_proState extends State<Exp_pro> {
                                     borderRadius: BorderRadius.circular(15.0),
                                     side: BorderSide(color: myPurple)))),
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Ajout_exp()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Ajout_langue()));
                     }),
               )),
         ],

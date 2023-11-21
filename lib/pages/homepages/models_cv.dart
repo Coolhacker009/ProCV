@@ -5,8 +5,8 @@ import 'package:pro_cv/utils/constants.dart';
 import 'package:pro_cv/widgets/header.dart';
 
 class ModelsCVTap extends StatefulWidget {
-  Function init;
-  ModelsCVTap({super.key, required this.init});
+  //Function init;
+  ModelsCVTap({super.key});
 
   @override
   State<ModelsCVTap> createState() => _ModelsCVTapState();

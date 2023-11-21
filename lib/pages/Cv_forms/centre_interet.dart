@@ -1,24 +1,27 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pro_cv/delayed_animation.dart';
+import 'package:pro_cv/pages/Cv_forms/Ajout_int.dart';
 import 'package:pro_cv/pages/Cv_forms/ajout_exp.dart';
+import 'package:pro_cv/pages/Cv_forms/centre_interet.dart';
+import 'package:pro_cv/pages/Cv_forms/competences.dart';
+import 'package:pro_cv/pages/Cv_forms/education.dart';
+import 'package:pro_cv/pages/Cv_forms/exp_pro.dart';
+import 'package:pro_cv/pages/Cv_forms/info_perso.dart';
+import 'package:pro_cv/pages/Cv_forms/langues.dart';
 import 'package:pro_cv/pages/Cv_forms/modif_exp.dart';
-import 'package:pro_cv/pages/home.dart';
+import 'package:pro_cv/pages/Cv_forms/modif_interet.dart';
+import 'package:pro_cv/pages/Cv_forms/obj_perso.dart';
 import 'package:pro_cv/pages/homepages/cv_forms.dart';
-import 'package:pro_cv/pages/homepages/models_cv.dart';
 import 'package:pro_cv/utils/constants.dart';
 import 'package:pro_cv/widgets/card.dart';
-import 'package:pro_cv/pages/homepages/models_cv.dart';
 
-class Exp_pro extends StatefulWidget {
-  const Exp_pro({super.key});
+class Centre_interet extends StatefulWidget {
+  const Centre_interet({super.key});
 
   @override
-  State<Exp_pro> createState() => _Exp_proState();
+  State<Centre_interet> createState() => _Centre_interetState();
 }
 
-class _Exp_proState extends State<Exp_pro> {
-  final _formKey = GlobalKey<FormState>();
+class _Centre_interetState extends State<Centre_interet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +51,7 @@ class _Exp_proState extends State<Exp_pro> {
                         },
                       )),
                   Text(
-                    "Expériences professionnelles",
+                    "Centre d'intérêt",
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 18,
@@ -59,7 +62,7 @@ class _Exp_proState extends State<Exp_pro> {
           Container(
             child: Expanded(
                 child: ListView.builder(
-              itemCount: 3,
+              itemCount: 1,
               itemBuilder: (context, index) => Container(
                   child: Container(
                 margin:
@@ -79,15 +82,8 @@ class _Exp_proState extends State<Exp_pro> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Pixel media 2.0',
+                        'Peinture',
                         style: TextStyle(fontSize: 18),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Designer',
-                        style: TextStyle(fontSize: 15),
                       ),
                     ),
                     Padding(
@@ -113,7 +109,7 @@ class _Exp_proState extends State<Exp_pro> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      Modif_exp()));
+                                                      Modif_interet()));
                                         },
                                       ),
                                     ),
@@ -125,10 +121,6 @@ class _Exp_proState extends State<Exp_pro> {
                                   ],
                                 ),
                               ),
-                              Container(
-                                margin: EdgeInsets.only(right: 20),
-                                child: Text('2013-2014'),
-                              )
                             ]),
                       ),
                     ),
@@ -144,7 +136,7 @@ class _Exp_proState extends State<Exp_pro> {
                 child: TextButton(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: Text("Ajouter une expérience",
+                      child: Text("Ajouter intérêt",
                           style: TextStyle(
                               fontSize: 17,
                               fontWeight: FontWeight.w600,
@@ -164,7 +156,7 @@ class _Exp_proState extends State<Exp_pro> {
                                     side: BorderSide(color: myPurple)))),
                     onPressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Ajout_exp()));
+                          MaterialPageRoute(builder: (context) => Ajout_int()));
                     }),
               )),
         ],

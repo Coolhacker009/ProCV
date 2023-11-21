@@ -29,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     pages = [
       HomeTap(init: change),
-      ModelsCVTap(init: change),
       CreationsTap(init: change),
       BrouillonTap(init: change),
       ExportedPage(init: change),

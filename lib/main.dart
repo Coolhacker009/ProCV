@@ -3,8 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pro_cv/delayed_animation.dart';
+import 'package:pro_cv/pages/Cv_forms/ajout_exp.dart';
 import 'package:pro_cv/pages/Cv_forms/exp_pro.dart';
 import 'package:pro_cv/pages/Cv_forms/info_perso.dart';
+import 'package:pro_cv/pages/Cv_forms/langues.dart';
 import 'package:pro_cv/pages/Cv_forms/obj_perso.dart';
 import 'package:pro_cv/pages/home.dart';
 import 'package:pro_cv/pages/homepages/cv_forms.dart';
@@ -47,6 +49,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(primaryColor: myPurple, fontFamily: "Poppins"),
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        home: Exp_pro());
+        home: OnboardingScreen());
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/pages/Cv_forms/image_picker.dart';
 import 'package:pro_cv/pages/home.dart';
+import 'package:pro_cv/pages/homepages/cv_forms.dart';
 import 'package:pro_cv/pages/signup.dart';
 import 'package:pro_cv/utils/constants.dart';
 
@@ -33,13 +34,20 @@ class _Obj_persoState extends State<Obj_perso> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(right: 25, left: 15),
-                        child: Icon(
-                          Icons.chevron_left,
-                          color: myPurple,
-                          size: 40,
-                        ),
-                      ),
+                          margin: EdgeInsets.only(right: 25, left: 15),
+                          child: GestureDetector(
+                            child: Icon(
+                              Icons.chevron_left,
+                              color: myPurple,
+                              size: 40,
+                            ),
+                            onTap: () {
+                              Navigator.pop(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Cv_forms()));
+                            },
+                          )),
                       Text(
                         "Objectif",
                         style: TextStyle(
