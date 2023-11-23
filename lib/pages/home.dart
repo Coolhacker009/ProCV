@@ -29,10 +29,11 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     pages = [
       HomeTap(init: change),
-      CreationsTap(init: change),
-      BrouillonTap(init: change),
-      ExportedPage(init: change),
-      ProfileTap(init: change),
+      ModelsCVTap(),
+      CreationsTap(),
+      BrouillonTap(),
+      ProfileTap(),
+      ExportedPage()
     ];
   }
 
@@ -61,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
         label: "Créations"),
     BottomNavigationBarItem(
         icon: Icon(Icons.edit_document), label: "Brouillons"),
-    BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile")
+    BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
   ];
 
   change(index) {
@@ -71,9 +72,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   bottomNavigationBar() {
+    if (currentIndex > 4) {
+      currentIndex = 1;
+    }
     // initBottomNavigationBarItem(_currenIndex);
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
       child: Container(
         decoration: BoxDecoration(
             boxShadow: [

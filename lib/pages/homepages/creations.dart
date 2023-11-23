@@ -4,8 +4,7 @@ import 'package:pro_cv/widgets/card.dart';
 import 'package:pro_cv/widgets/header.dart';
 
 class CreationsTap extends StatefulWidget {
-  Function init;
-  CreationsTap({super.key, required this.init});
+  CreationsTap({super.key});
 
   @override
   State<CreationsTap> createState() => _CreationsTapState();
@@ -18,10 +17,14 @@ class _CreationsTapState extends State<CreationsTap> {
       body: SingleChildScrollView(
           child: Center(
               child: Column(children: [
+        header(title: "Créations", imgLink: "assets/img/home.png"),
+        SizedBox(
+          height: 20,
+        ),
         DelayedAnimation(
-            delay: 5,
-            child:
-                header(title: "Créations", imgLink: "assets/img/folder2.png")),
+          delay: 2,
+          child: header2('Créations', "assets/img/folder2.png"),
+        ),
         card(
             context: context,
             imgLink: 'assets/img/avatar.jpg',

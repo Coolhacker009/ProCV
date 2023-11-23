@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/pages/Cv_forms/ajout_education.dart';
 import 'package:pro_cv/pages/Cv_forms/ajout_exp.dart';
+import 'package:pro_cv/pages/Cv_forms/modif_education.dart';
 import 'package:pro_cv/pages/home.dart';
 import 'package:pro_cv/pages/homepages/cv_forms.dart';
 import 'package:pro_cv/pages/homepages/models_cv.dart';
@@ -100,13 +101,22 @@ class _EducationState extends State<Education> {
                               Container(
                                 child: Row(
                                   children: [
-                                    Container(
-                                        margin: EdgeInsets.only(right: 12),
-                                        child: Icon(
-                                          Icons.edit,
-                                          size: 30,
-                                          color: myPurple,
-                                        )),
+                                    GestureDetector(
+                                      child: Container(
+                                          margin: EdgeInsets.only(right: 12),
+                                          child: Icon(
+                                            Icons.edit,
+                                            size: 30,
+                                            color: myPurple,
+                                          )),
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Modif_education()));
+                                      },
+                                    ),
                                     Icon(
                                       Icons.delete,
                                       size: 30,

@@ -12,6 +12,22 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+  String? validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Veuillez entrer une adresse e-mail";
+    }
+
+    // Utilisez une expression régulière pour valider le format de l'e-mail
+    bool isValid =
+        RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$').hasMatch(value);
+
+    if (!isValid) {
+      return "Veuillez entrer une adresse e-mail valide";
+    }
+
+    return null;
+  }
+
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -96,18 +112,16 @@ class _SignupState extends State<Signup> {
                                   Container(
                                     margin: EdgeInsets.only(bottom: 10),
                                     child: TextFormField(
+                                      validator:
+                                          validateEmail, // Utilisez la fonction de validation ici
                                       decoration: InputDecoration(
-                                          labelText: "Email",
-                                          hintText: "Entrez votre email",
-                                          border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular((28))))),
-                                      validator: (value) {
-                                        if (value == null || value.isEmpty) {
-                                          return "Veillez remplir ce champ";
-                                        }
-                                        return null;
-                                      },
+                                        labelText: "Email",
+                                        hintText: "Entrez votre email",
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular((28))),
+                                        ),
+                                      ),
                                       autovalidateMode:
                                           AutovalidateMode.onUserInteraction,
                                     ),
@@ -115,6 +129,9 @@ class _SignupState extends State<Signup> {
                                   Container(
                                     margin: EdgeInsets.only(bottom: 10),
                                     child: TextFormField(
+                                      obscureText: true,
+                                      enableSuggestions: false,
+                                      autocorrect: false,
                                       decoration: InputDecoration(
                                           labelText: "Mot de passe",
                                           hintText: "Entrez votre mot de passe",
@@ -134,6 +151,9 @@ class _SignupState extends State<Signup> {
                                   Container(
                                     margin: EdgeInsets.only(bottom: 10),
                                     child: TextFormField(
+                                      obscureText: true,
+                                      enableSuggestions: false,
+                                      autocorrect: false,
                                       decoration: InputDecoration(
                                           labelText: "Mot de passe",
                                           hintText:

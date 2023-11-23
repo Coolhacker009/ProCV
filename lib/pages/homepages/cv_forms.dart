@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pro_cv/pages/Cv_forms/MyResumePage.dart';
 import 'package:pro_cv/pages/Cv_forms/centre_interet.dart';
 import 'package:pro_cv/pages/Cv_forms/competences.dart';
 import 'package:pro_cv/pages/Cv_forms/education.dart';
@@ -10,6 +11,7 @@ import 'package:pro_cv/pages/home.dart';
 import 'package:pro_cv/pages/homepages/models_cv.dart';
 import 'package:pro_cv/utils/constants.dart';
 import 'package:pro_cv/widgets/card.dart';
+import 'home.dart';
 
 class Cv_forms extends StatefulWidget {
   const Cv_forms({super.key});
@@ -43,6 +45,7 @@ class _Cv_formsState extends State<Cv_forms> {
                     ),
                   ),
                   onTap: () {
+                    var change;
                     Navigator.pop(context,
                         MaterialPageRoute(builder: (context) => ModelsCVTap()));
                   },
@@ -67,7 +70,12 @@ class _Cv_formsState extends State<Cv_forms> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(25.0),
                                       side: BorderSide(color: myPurple)))),
-                      onPressed: () => {}),
+                      onPressed: () => {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MyResumePage()))
+                          }),
                 ),
                 Container(
                   child: TextButton(

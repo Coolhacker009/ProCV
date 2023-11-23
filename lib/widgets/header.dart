@@ -36,7 +36,7 @@ header({required String title, required String imgLink}) {
           ],
         ),
       ),
-      header2(title, imgLink)
+      // header2(title, imgLink)
     ],
   );
 }

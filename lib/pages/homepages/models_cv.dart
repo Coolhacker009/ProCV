@@ -5,7 +5,6 @@ import 'package:pro_cv/utils/constants.dart';
 import 'package:pro_cv/widgets/header.dart';
 
 class ModelsCVTap extends StatefulWidget {
-  //Function init;
   ModelsCVTap({super.key});
 
   @override
@@ -20,10 +19,14 @@ class _ModelsCVTapState extends State<ModelsCVTap> {
         child: Center(
           child: Column(
             children: [
+              header(title: "Modèles", imgLink: "assets/img/home.png"),
+              SizedBox(
+                height: 20,
+              ),
               DelayedAnimation(
-                  delay: 5,
-                  child: header(
-                      title: "Modèles CV", imgLink: "assets/img/img1.png")),
+                delay: 2,
+                child: header2('Modèles', "assets/img/img1.png"),
+              ),
               Material(
                 elevation: 10,
                 shape: RoundedRectangleBorder(

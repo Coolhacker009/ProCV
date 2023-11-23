@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/pages/homepages/creations.dart';
+import 'package:pro_cv/pages/homepages/exported_page.dart';
 import 'package:pro_cv/pages/homepages/models_cv.dart';
 import 'package:pro_cv/utils/constants.dart';
 import 'package:pro_cv/widgets/header.dart';
@@ -19,11 +20,13 @@ class _HomeTapState extends State<HomeTap> {
     return Center(
         child: Column(
       children: [
-        DelayedAnimation(
-            delay: 5,
-            child: header(title: "Accueil", imgLink: "assets/img/home.png")),
+        header(title: "Accueil", imgLink: "assets/img/home.png"),
         SizedBox(
           height: 20,
+        ),
+        DelayedAnimation(
+          delay: 2,
+          child: header2('Accueil', "assets/img/home.png"),
         ),
         Expanded(
           child: Wrap(
@@ -136,9 +139,13 @@ class _HomeTapState extends State<HomeTap> {
                         GestureDetector(
                           child: Image.asset("assets/img/img3.png"),
                           onTap: () {
-                            setState(() {
-                              widget.init(4);
-                            });
+                            // setState(() {
+                            //   widget.init(5);
+                            // });
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ExportedPage()));
                           },
                         ),
                         Text("Fichiers Exportés",

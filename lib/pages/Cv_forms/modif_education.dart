@@ -1,19 +1,23 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_cv/delayed_animation.dart';
+import 'package:pro_cv/pages/Cv_forms/ajout_exp.dart';
 import 'package:pro_cv/pages/Cv_forms/exp_pro.dart';
 import 'package:pro_cv/pages/home.dart';
+import 'package:pro_cv/pages/homepages/cv_forms.dart';
+import 'package:pro_cv/pages/homepages/models_cv.dart';
 import 'package:pro_cv/utils/constants.dart';
 import 'package:pro_cv/widgets/card.dart';
+import 'package:pro_cv/pages/homepages/models_cv.dart';
 
-class Ajout_education extends StatefulWidget {
-  const Ajout_education({super.key});
+class Modif_education extends StatefulWidget {
+  const Modif_education({super.key});
 
   @override
-  State<Ajout_education> createState() => _Ajout_educationState();
+  State<Modif_education> createState() => _Modif_educationState();
 }
 
-class _Ajout_educationState extends State<Ajout_education> {
+class _Modif_educationState extends State<Modif_education> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -44,7 +48,7 @@ class _Ajout_educationState extends State<Ajout_education> {
                         },
                       )),
                   Text(
-                    "Ajouter éducation",
+                    "Modifier éducation",
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 20,
