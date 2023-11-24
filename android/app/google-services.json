@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "992200673077",
+    "project_id": "procv-49cc2",
+    "storage_bucket": "procv-49cc2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:992200673077:android:d5852580cc23344ee3ee7c",
+        "android_client_info": {
+          "package_name": "com.example.pro_cv"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA5mlD2aKJ3wfSE0LFrP6-usdovobSrLU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

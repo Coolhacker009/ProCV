@@ -4,6 +4,8 @@ import 'package:pro_cv/main.dart';
 import 'package:pro_cv/pages/home.dart';
 import 'package:pro_cv/pages/signup.dart';
 import 'package:pro_cv/utils/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 final _formKey = GlobalKey<FormState>();
 

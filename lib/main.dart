@@ -19,8 +19,13 @@ import 'package:pro_cv/pages/start_screens/start_screen1.dart';
 import 'package:pro_cv/pages/start_screens/start_screen2.dart';
 import 'package:pro_cv/pages/start_screens/start_screen3.dart';
 import 'package:pro_cv/utils/constants.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -48,9 +53,10 @@ class MyApp extends StatelessWidget {
     //     overlays: [SystemUiOverlay.bottom]);
     // SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     return MaterialApp(
-        theme: ThemeData(primaryColor: myPurple, fontFamily: "Poppins"),
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        home: OnboardingScreen());
+      theme: ThemeData(primaryColor: myPurple, fontFamily: "Poppins"),
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      home: OnboardingScreen(),
+    );
   }
 }

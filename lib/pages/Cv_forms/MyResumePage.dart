@@ -19,7 +19,7 @@ class MyResumePage extends StatelessWidget {
               child: FlutterResumeTemplate(
                 data: data,
                 templateTheme: TemplateTheme.modern,
-                mode: TemplateMode.readOnlyMode,
+                mode: TemplateMode.onlyEditableMode,
                 onSaveResume: (globalKey) async =>
                     await PdfHandler().createResume(globalKey),
               ),
