@@ -6,6 +6,7 @@ import 'package:pro_cv/pages/signup.dart';
 import 'package:pro_cv/utils/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'signup.dart';
 
 final _formKey = GlobalKey<FormState>();
 
@@ -17,6 +18,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return "Veuillez entrer une adresse e-mail";
@@ -80,6 +83,7 @@ class _LoginState extends State<Login> {
                                   Container(
                                     margin: EdgeInsets.only(bottom: 10),
                                     child: TextFormField(
+                                      controller: emailController,
                                       validator: validateEmail,
                                       decoration: InputDecoration(
                                           labelText: "Email",
@@ -95,6 +99,7 @@ class _LoginState extends State<Login> {
                                   Container(
                                     margin: EdgeInsets.only(bottom: 10),
                                     child: TextFormField(
+                                      controller: passwordController,
                                       obscureText: true,
                                       enableSuggestions: false,
                                       autocorrect: false,
@@ -142,14 +147,82 @@ class _LoginState extends State<Login> {
                                                     borderRadius:
                                                         BorderRadius.circular(25.0),
                                                     side: BorderSide(color: myPurple)))),
-                                        onPressed: () {
+                                        onPressed: () async {
                                           if (_formKey.currentState!
                                               .validate()) {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        HomeScreen()));
+                                            try {
+                                              final credential =
+                                                  await FirebaseAuth.instance
+                                                      .signInWithEmailAndPassword(
+                                                email:
+                                                    emailController.value.text,
+                                                password: passwordController
+                                                    .value.text,
+                                              );
+                                              Navigator.pushAndRemoveUntil(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          HomeScreen()),
+                                                  (route) => false);
+                                            } on FirebaseAuthException catch (e) {
+                                              if (e.code == 'user-not-found') {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    backgroundColor: Colors.red,
+                                                    content: const Text(
+                                                      'Aucun utilisateur trouvé pour cet e-mail.',
+                                                      style: TextStyle(
+                                                        fontSize: 14,
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    behavior: SnackBarBehavior
+                                                        .floating,
+                                                    margin: EdgeInsets.only(
+                                                      bottom:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height -
+                                                              100,
+                                                      left: 10,
+                                                      right: 10,
+                                                    ),
+                                                  ),
+                                                );
+                                              } else if (e.code ==
+                                                  'wrong-password') {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    backgroundColor: Colors.red,
+                                                    content: const Text(
+                                                      'Mot de passe incorrect pour cet utilisateur.',
+                                                      style: TextStyle(
+                                                        fontSize: 14,
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    behavior: SnackBarBehavior
+                                                        .floating,
+                                                    margin: EdgeInsets.only(
+                                                      bottom:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height -
+                                                              100,
+                                                      left: 10,
+                                                      right: 10,
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                            }
                                           }
                                         }),
                                   ),

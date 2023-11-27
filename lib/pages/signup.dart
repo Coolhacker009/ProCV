@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/pages/home.dart';
@@ -12,6 +13,9 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
   String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return "Veuillez entrer une adresse e-mail";
@@ -74,27 +78,9 @@ class _SignupState extends State<Signup> {
                                   Container(
                                     margin: EdgeInsets.only(bottom: 10),
                                     child: TextFormField(
+                                      controller: _nameController,
                                       decoration: InputDecoration(
-                                          labelText: "Prénom",
-                                          hintText: "Entrez votre prénom",
-                                          border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular((28))))),
-                                      validator: (value) {
-                                        if (value == null || value.isEmpty) {
-                                          return "Veillez remplir ce champ";
-                                        }
-                                        return null;
-                                      },
-                                      autovalidateMode:
-                                          AutovalidateMode.onUserInteraction,
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(bottom: 10),
-                                    child: TextFormField(
-                                      decoration: InputDecoration(
-                                          labelText: "Nom",
+                                          labelText: "Prénom et nom",
                                           hintText: "Entrez votre nom",
                                           border: OutlineInputBorder(
                                               borderRadius: BorderRadius.all(
@@ -112,6 +98,8 @@ class _SignupState extends State<Signup> {
                                   Container(
                                     margin: EdgeInsets.only(bottom: 10),
                                     child: TextFormField(
+                                      keyboardType: TextInputType.emailAddress,
+                                      controller: _emailController,
                                       validator:
                                           validateEmail, // Utilisez la fonction de validation ici
                                       decoration: InputDecoration(
@@ -129,35 +117,13 @@ class _SignupState extends State<Signup> {
                                   Container(
                                     margin: EdgeInsets.only(bottom: 10),
                                     child: TextFormField(
+                                      controller: _passwordController,
                                       obscureText: true,
                                       enableSuggestions: false,
                                       autocorrect: false,
                                       decoration: InputDecoration(
                                           labelText: "Mot de passe",
                                           hintText: "Entrez votre mot de passe",
-                                          border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular((28))))),
-                                      validator: (value) {
-                                        if (value == null || value.isEmpty) {
-                                          return "Veillez remplir ce champ";
-                                        }
-                                        return null;
-                                      },
-                                      autovalidateMode:
-                                          AutovalidateMode.onUserInteraction,
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(bottom: 10),
-                                    child: TextFormField(
-                                      obscureText: true,
-                                      enableSuggestions: false,
-                                      autocorrect: false,
-                                      decoration: InputDecoration(
-                                          labelText: "Mot de passe",
-                                          hintText:
-                                              "Confirmez votre mot de passe",
                                           border: OutlineInputBorder(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular((28))))),
@@ -199,14 +165,86 @@ class _SignupState extends State<Signup> {
                                                     borderRadius:
                                                         BorderRadius.circular(25.0),
                                                     side: BorderSide(color: myPurple)))),
-                                        onPressed: () {
+                                        onPressed: () async {
                                           if (_formKey.currentState!
                                               .validate()) {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        HomeScreen()));
+                                            try {
+                                              final credential = await FirebaseAuth
+                                                  .instance
+                                                  .createUserWithEmailAndPassword(
+                                                email:
+                                                    _emailController.value.text,
+                                                password: _passwordController
+                                                    .value.text,
+                                              );
+                                              await credential.user
+                                                  ?.updateDisplayName(
+                                                      _nameController
+                                                          .value.text);
+                                              Navigator.pushAndRemoveUntil(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          HomeScreen()),
+                                                  (route) => false);
+                                            } on FirebaseAuthException catch (e) {
+                                              if (e.code == 'weak-password') {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    backgroundColor: Colors.red,
+                                                    content: const Text(
+                                                      'Le mot de passe est trop faible.',
+                                                      style: TextStyle(
+                                                          fontSize: 14,
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                    behavior: SnackBarBehavior
+                                                        .floating,
+                                                    margin: EdgeInsets.only(
+                                                      bottom:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height -
+                                                              100,
+                                                      left: 10,
+                                                      right: 10,
+                                                    ),
+                                                  ),
+                                                );
+                                              } else if (e.code ==
+                                                  'email-already-in-use') {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    backgroundColor: Colors.red,
+                                                    content: const Text(
+                                                      'Un compte existe déja avec cette adresse e-mail',
+                                                      style: TextStyle(
+                                                          fontSize: 14,
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                    behavior: SnackBarBehavior
+                                                        .floating,
+                                                    margin: EdgeInsets.only(
+                                                      bottom:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height -
+                                                              100,
+                                                      left: 10,
+                                                      right: 10,
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                            } catch (e) {
+                                              print(e);
+                                            }
                                           }
                                         }),
                                   ),
