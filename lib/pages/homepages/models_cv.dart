@@ -19,7 +19,10 @@ class _ModelsCVTapState extends State<ModelsCVTap> {
         child: Center(
           child: Column(
             children: [
-              header(title: "Modèles", imgLink: "assets/img/home.png"),
+              header(
+                  title: "Modèles",
+                  imgLink: "assets/img/home.png",
+                  context: context),
               SizedBox(
                 height: 20,
               ),
@@ -83,14 +86,17 @@ class _ModelsCVTapState extends State<ModelsCVTap> {
                     child: Container(
                       child: GestureDetector(
                         child: Image.asset(
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            height: 220,
-                            "assets/img/img2.png"),
+                          "assets/img/img2.png",
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          height: 220,
+                        ),
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Cv_forms()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Cv_forms(),
+                            ),
+                          );
                         },
                       ),
                       decoration: BoxDecoration(

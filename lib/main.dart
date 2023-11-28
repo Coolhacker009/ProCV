@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pro_cv/app_state.dart';
 import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/pages/Cv_forms/MyResumePage.dart';
 import 'package:pro_cv/pages/Cv_forms/ajout_exp.dart';
@@ -20,6 +21,7 @@ import 'package:pro_cv/pages/start_screens/start_screen2.dart';
 import 'package:pro_cv/pages/start_screens/start_screen3.dart';
 import 'package:pro_cv/utils/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -27,7 +29,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) => AppState(),
+      builder: (context, _) {
+        return MyApp();
+      }));
 }
 
 class MyApp extends StatelessWidget {

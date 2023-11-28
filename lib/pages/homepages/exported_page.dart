@@ -19,7 +19,10 @@ class _ExportedPageState extends State<ExportedPage> {
         ),
         body: Center(
             child: Column(children: [
-          header(title: "Exportes", imgLink: "assets/img/pdf2.png"),
+          header(
+              title: "Exportes",
+              imgLink: "assets/img/pdf2.png",
+              context: context),
           SizedBox(
             height: 20,
           ),

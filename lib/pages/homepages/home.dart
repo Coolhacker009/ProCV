@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/pages/homepages/creations.dart';
@@ -5,6 +6,9 @@ import 'package:pro_cv/pages/homepages/exported_page.dart';
 import 'package:pro_cv/pages/homepages/models_cv.dart';
 import 'package:pro_cv/utils/constants.dart';
 import 'package:pro_cv/widgets/header.dart';
+import 'package:provider/provider.dart';
+
+import '../../app_state.dart';
 
 class HomeTap extends StatefulWidget {
   Function init;
@@ -15,12 +19,32 @@ class HomeTap extends StatefulWidget {
 }
 
 class _HomeTapState extends State<HomeTap> {
+  String name = "";
+  String email = '';
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user != null) {
+        setState(() {
+          Provider.of<AppState>(context, listen: false).name =
+              user.displayName!;
+        });
+        print(user.displayName);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
         child: Column(
       children: [
-        header(title: "Accueil", imgLink: "assets/img/home.png"),
+        header(
+            title: "Accueil", imgLink: "assets/img/home.png", context: context),
         SizedBox(
           height: 20,
         ),

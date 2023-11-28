@@ -82,7 +82,7 @@ class _ProfileTapState extends State<ProfileTap> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(
                     (MediaQuery.of(context).size.width * 0.4) * 0.5),
-                child: Image.asset("assets/img/avatar.jpg"),
+                child: Image.asset("assets/img/utilisateur.png"),
               ),
             ),
           ),
@@ -114,11 +114,16 @@ class _ProfileTapState extends State<ProfileTap> {
               width: MediaQuery.of(context).size.width * 0.8,
               child: CustomButton(
                   onTap: () async {
-                    await FirebaseAuth.instance.signOut();
-                    Navigator.pushAndRemoveUntil(
+                    try {
+                      await FirebaseAuth.instance.signOut();
+                      Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(builder: (context) => Login()),
-                        (route) => false);
+                        (route) => false,
+                      );
+                    } catch (e) {
+                      print("Erreur de déconnexion : $e");
+                    }
                   },
                   color: Colors.white,
                   colorBorder: myPurple,

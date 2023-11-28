@@ -11,7 +11,7 @@ import 'signup.dart';
 final _formKey = GlobalKey<FormState>();
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+  const Login({Key? key}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
@@ -20,6 +20,22 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    checkUserLoggedIn();
+  }
+
+  Future<void> checkUserLoggedIn() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
+    }
+  }
+
   String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return "Veuillez entrer une adresse e-mail";
@@ -166,41 +182,16 @@ class _LoginState extends State<Login> {
                                                           HomeScreen()),
                                                   (route) => false);
                                             } on FirebaseAuthException catch (e) {
-                                              if (e.code == 'user-not-found') {
+                                              print(
+                                                  'Failed with error code: ${e.code}');
+                                              if (e.code ==
+                                                  'invalid-login-credentials') {
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
                                                   SnackBar(
                                                     backgroundColor: Colors.red,
                                                     content: const Text(
-                                                      'Aucun utilisateur trouvé pour cet e-mail.',
-                                                      style: TextStyle(
-                                                        fontSize: 14,
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                    behavior: SnackBarBehavior
-                                                        .floating,
-                                                    margin: EdgeInsets.only(
-                                                      bottom:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .height -
-                                                              100,
-                                                      left: 10,
-                                                      right: 10,
-                                                    ),
-                                                  ),
-                                                );
-                                              } else if (e.code ==
-                                                  'wrong-password') {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    backgroundColor: Colors.red,
-                                                    content: const Text(
-                                                      'Mot de passe incorrect pour cet utilisateur.',
+                                                      'Adresse email ou mot de passe incorrect.',
                                                       style: TextStyle(
                                                         fontSize: 14,
                                                         color: Colors.white,

@@ -16,7 +16,8 @@ class _BrouillonTapState extends State<BrouillonTap> {
     return SingleChildScrollView(
         child: Center(
             child: Column(children: [
-      header(title: "Brouillon", imgLink: "assets/img/home.png"),
+      header(
+          title: "Brouillon", imgLink: "assets/img/home.png", context: context),
       SizedBox(
         height: 20,
       ),

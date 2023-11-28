@@ -17,7 +17,10 @@ class _CreationsTapState extends State<CreationsTap> {
       body: SingleChildScrollView(
           child: Center(
               child: Column(children: [
-        header(title: "Créations", imgLink: "assets/img/home.png"),
+        header(
+            title: "Créations",
+            imgLink: "assets/img/home.png",
+            context: context),
         SizedBox(
           height: 20,
         ),

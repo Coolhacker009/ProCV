@@ -1,7 +1,56 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_cv/utils/constants.dart';
+import 'package:provider/provider.dart';
 
-header({required String title, required String imgLink}) {
+import '../app_state.dart';
+
+class Name extends StatefulWidget {
+  const Name({super.key});
+
+  String get name => '';
+
+  set name(String name) {
+    name = name;
+  }
+
+  @override
+  State<Name> createState() => _NameState();
+}
+
+class _NameState extends State<Name> {
+  String name = "";
+  String email = '';
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user != null) {
+        setState(() {
+          name = user.displayName!;
+          email = user.email!;
+          widget.name = name;
+        });
+        print(user.displayName);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Text("$widget.name",
+        style: TextStyle(
+            color: Colors.black, fontWeight: FontWeight.w600, fontSize: 15));
+  }
+}
+
+header(
+    {required String title,
+    required String imgLink,
+    required BuildContext context}) {
   return Column(
     children: [
       Container(
@@ -18,11 +67,11 @@ header({required String title, required String imgLink}) {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             CircleAvatar(
-              backgroundImage: AssetImage('assets/img/avatar.jpg'),
+              backgroundImage: AssetImage('assets/img/utilisateur.png'),
               radius: 32,
             ),
             Text(
-              "Pablo Picasso",
+              Provider.of<AppState>(context, listen: false).name,
               style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w600,
