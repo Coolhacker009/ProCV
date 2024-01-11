@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pro_cv/Services/dataService.dart';
 import 'package:pro_cv/app_state.dart';
 import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/pages/Cv_forms/MyResumePage.dart';
@@ -13,6 +14,7 @@ import 'package:pro_cv/pages/Cv_forms/obj_perso.dart';
 import 'package:pro_cv/pages/home.dart';
 import 'package:pro_cv/pages/homepages/cv_forms.dart';
 import 'package:pro_cv/pages/homepages/exported_page.dart';
+import 'package:pro_cv/pages/homepages/profile.dart';
 import 'package:pro_cv/pages/login.dart';
 import 'package:pro_cv/pages/signup.dart';
 import 'package:pro_cv/pages/start_screens/OnBoardingScreen.dart';
@@ -29,11 +31,13 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(ChangeNotifierProvider(
-      create: (context) => AppState(),
-      builder: (context, _) {
-        return MyApp();
-      }));
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => AppState()),
+      ChangeNotifierProvider(create: (context) => DataService())
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -60,10 +64,9 @@ class MyApp extends StatelessWidget {
     //     overlays: [SystemUiOverlay.bottom]);
     // SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     return MaterialApp(
-      theme: ThemeData(primaryColor: myPurple, fontFamily: "Poppins"),
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      home: OnboardingScreen(),
-    );
+        theme: ThemeData(primaryColor: myPurple, fontFamily: "Poppins"),
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        home: HomeScreen());
   }
 }

@@ -1,13 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_resume_template/flutter_resume_template.dart';
+import 'package:pro_cv/Services/dataService.dart';
 import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/pages/Cv_forms/exp_pro.dart';
 import 'package:pro_cv/pages/home.dart';
+import 'package:pro_cv/pages/model/experience.dart';
 import 'package:pro_cv/utils/constants.dart';
 import 'package:pro_cv/widgets/card.dart';
+import 'package:provider/provider.dart';
 
 class Ajout_exp extends StatefulWidget {
-  const Ajout_exp({super.key});
+  const Ajout_exp({super.key, this.experience});
+
+  final Experience? experience;
 
   @override
   State<Ajout_exp> createState() => _Ajout_expState();
@@ -15,6 +21,34 @@ class Ajout_exp extends StatefulWidget {
 
 class _Ajout_expState extends State<Ajout_exp> {
   final _formKey = GlobalKey<FormState>();
+
+  TextEditingController nomSociete = TextEditingController();
+  TextEditingController poste = TextEditingController();
+  TextEditingController date = TextEditingController();
+  TextEditingController description = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (widget.experience != null) {
+      nomSociete.text =
+          widget.experience!.experienceData?.experienceLocation != null
+              ? widget.experience!.experienceData!.experienceLocation
+              : '';
+      poste.text = widget.experience!.experienceData?.experienceTitle != null
+          ? widget.experience!.experienceData!.experienceTitle
+          : '';
+      date.text = widget.experience!.experienceData?.experiencePeriod != null
+          ? widget.experience!.experienceData!.experiencePeriod
+          : '';
+      description.text =
+          widget.experience!.experienceData?.experienceDescription != null
+              ? widget.experience!.experienceData!.experienceDescription
+              : '';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,6 +102,7 @@ class _Ajout_expState extends State<Ajout_exp> {
                               Container(
                                 margin: EdgeInsets.only(bottom: 10),
                                 child: TextFormField(
+                                  controller: nomSociete,
                                   decoration: InputDecoration(
                                       labelText: "Nom de la société",
                                       hintText: "Entrez le nom de la société",
@@ -88,6 +123,7 @@ class _Ajout_expState extends State<Ajout_exp> {
                               Container(
                                 margin: EdgeInsets.only(bottom: 10),
                                 child: TextFormField(
+                                  controller: poste,
                                   decoration: InputDecoration(
                                       labelText: "Poste",
                                       hintText: "Entrez le poste",
@@ -107,9 +143,10 @@ class _Ajout_expState extends State<Ajout_exp> {
                               Container(
                                 margin: EdgeInsets.only(bottom: 10),
                                 child: TextFormField(
+                                  controller: date,
                                   decoration: InputDecoration(
-                                      labelText: "Date de début",
-                                      hintText: "Entrez la date de début",
+                                      labelText: "Date",
+                                      hintText: "Ex: Aout 2021 - Dec 2021",
                                       border: OutlineInputBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular((12))))),
@@ -126,9 +163,10 @@ class _Ajout_expState extends State<Ajout_exp> {
                               Container(
                                 margin: EdgeInsets.only(bottom: 10),
                                 child: TextFormField(
+                                  controller: description,
                                   decoration: InputDecoration(
-                                      labelText: "Date de fin",
-                                      hintText: "Entrez la date de fin",
+                                      labelText: "Description",
+                                      hintText: "description",
                                       border: OutlineInputBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular((12))))),
@@ -175,8 +213,23 @@ class _Ajout_expState extends State<Ajout_exp> {
                                     side: BorderSide(color: myPurple)))),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Exp_pro()));
+                        if (widget.experience != null) {
+                        } else {
+                          ExperienceData experienceData = ExperienceData(
+                              experienceTitle: poste.text,
+                              experienceLocation: nomSociete.text,
+                              experiencePeriod: date.text,
+                              experienceDescription: description.text,
+                              experiencePlace: '');
+                          Experience experience = Experience(
+                              id: Provider.of<DataService>(context,
+                                      listen: false)
+                                  .getId(),
+                              experienceData: experienceData);
+                          Provider.of<DataService>(context, listen: false)
+                              .addExperience(experience);
+                        }
+                        Navigator.pop(context);
                       }
                     }),
               )),

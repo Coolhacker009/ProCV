@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pro_cv/Services/dataService.dart';
 import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/pages/Cv_forms/ajout_education.dart';
 import 'package:pro_cv/pages/Cv_forms/ajout_exp.dart';
@@ -10,15 +11,16 @@ import 'package:pro_cv/pages/homepages/models_cv.dart';
 import 'package:pro_cv/utils/constants.dart';
 import 'package:pro_cv/widgets/card.dart';
 import 'package:pro_cv/pages/homepages/models_cv.dart';
+import 'package:provider/provider.dart';
 
-class Education extends StatefulWidget {
-  const Education({super.key});
+class Educations extends StatefulWidget {
+  const Educations({super.key});
 
   @override
-  State<Education> createState() => _EducationState();
+  State<Educations> createState() => _EducationsState();
 }
 
-class _EducationState extends State<Education> {
+class _EducationsState extends State<Educations> {
   @override
   final _formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
@@ -42,10 +44,7 @@ class _EducationState extends State<Education> {
                           size: 40,
                         ),
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Cv_forms()));
+                          Navigator.pop(context);
                         },
                       )),
                   Text(
@@ -58,84 +57,91 @@ class _EducationState extends State<Education> {
                 ],
               )),
           Container(
-            child: Expanded(
-                child: ListView.builder(
-              itemCount: 3,
-              itemBuilder: (context, index) => Container(
-                  child: Container(
-                margin:
-                    EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 1),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 6,
-                          color: Colors.grey.shade600,
-                          spreadRadius: 1)
-                    ],
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'DEF',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Ecole de la cathédrale',
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 20, top: 6, bottom: 20),
+            child: Consumer<DataService>(
+              builder: (context, dataService, child) {
+                return Expanded(
+                    child: ListView.builder(
+                  itemCount: dataService.educations.length,
+                  itemBuilder: (context, index) => Container(
                       child: Container(
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                child: Row(
-                                  children: [
-                                    GestureDetector(
-                                      child: Container(
-                                          margin: EdgeInsets.only(right: 12),
-                                          child: Icon(
-                                            Icons.edit,
-                                            size: 30,
-                                            color: myPurple,
-                                          )),
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    Modif_education()));
-                                      },
+                    margin: EdgeInsets.only(
+                        top: 20, left: 10, right: 10, bottom: 1),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 6,
+                              color: Colors.grey.shade600,
+                              spreadRadius: 1)
+                        ],
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            dataService
+                                .educations[index].education!.schoolLevel,
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            dataService.educations[index].education!.schoolName,
+                            style: TextStyle(fontSize: 15),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20, top: 6, bottom: 20),
+                          child: Container(
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    child: Row(
+                                      children: [
+                                        GestureDetector(
+                                          child: Container(
+                                              margin:
+                                                  EdgeInsets.only(right: 12),
+                                              child: Icon(
+                                                Icons.edit,
+                                                size: 30,
+                                                color: myPurple,
+                                              )),
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        Modif_education()));
+                                          },
+                                        ),
+                                        Icon(
+                                          Icons.delete,
+                                          size: 30,
+                                          color: myPurple,
+                                        )
+                                      ],
                                     ),
-                                    Icon(
-                                      Icons.delete,
-                                      size: 30,
-                                      color: myPurple,
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(right: 20),
-                                child: Text('2013-2014'),
-                              )
-                            ]),
-                      ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(right: 20),
+                                    child: Text('2013-2014'),
+                                  )
+                                ]),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              )),
-            )),
+                  )),
+                ));
+              },
+            ),
           ),
           Container(
               margin: EdgeInsets.only(top: 10, bottom: 30),

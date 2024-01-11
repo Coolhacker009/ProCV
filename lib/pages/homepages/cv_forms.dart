@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_resume_template/flutter_resume_template.dart';
+import 'package:pro_cv/Services/dataService.dart';
 import 'package:pro_cv/pages/Cv_forms/MyResumePage.dart';
 import 'package:pro_cv/pages/Cv_forms/centre_interet.dart';
 import 'package:pro_cv/pages/Cv_forms/competences.dart';
@@ -11,11 +13,13 @@ import 'package:pro_cv/pages/home.dart';
 import 'package:pro_cv/pages/homepages/models_cv.dart';
 import 'package:pro_cv/utils/constants.dart';
 import 'package:pro_cv/widgets/card.dart';
+import 'package:provider/provider.dart';
 import 'home.dart';
 
 class Cv_forms extends StatefulWidget {
-  const Cv_forms({super.key});
+  const Cv_forms({super.key, required this.mode});
 
+  final TemplateTheme mode;
   @override
   State<Cv_forms> createState() => _Cv_formsState();
 }
@@ -71,10 +75,38 @@ class _Cv_formsState extends State<Cv_forms> {
                                       borderRadius: BorderRadius.circular(25.0),
                                       side: BorderSide(color: myPurple)))),
                       onPressed: () => {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => MyResumePage()))
+                            if (Provider.of<DataService>(context, listen: false)
+                                        .expreiences
+                                        .length <
+                                    1 ||
+                                Provider.of<DataService>(context, listen: false)
+                                        .educations
+                                        .length <
+                                    2 ||
+                                Provider.of<DataService>(context, listen: false)
+                                        .languages
+                                        .length <
+                                    1)
+                              {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) => Dialog(
+                                          child: Text(
+                                            "veillez renseignez les différents champs",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ))
+                              }
+                            else
+                              {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MyResumePage(
+                                              cvmode: widget.mode,
+                                            )))
+                              },
                           }),
                 ),
                 Container(
@@ -164,45 +196,6 @@ class _Cv_formsState extends State<Cv_forms> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Icon(
-                          Icons.track_changes_rounded,
-                          color: myPurple,
-                          size: 33,
-                        ),
-                        Text(
-                          "Objectif",
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Icon(
-                          Icons.edit,
-                          color: myPurple,
-                          size: 28,
-                        )
-                      ],
-                    ),
-                  )),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Obj_perso()));
-              },
-            ),
-            GestureDetector(
-              child: Container(
-                  margin: EdgeInsets.only(bottom: 12, right: 14, left: 14),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                            blurRadius: 2,
-                            color: Colors.grey.shade600,
-                            spreadRadius: 1)
-                      ],
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Padding(
-                    padding: EdgeInsets.all(23),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
                           Icons.work,
                           color: myPurple,
                           size: 33,
@@ -260,7 +253,7 @@ class _Cv_formsState extends State<Cv_forms> {
                   )),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Education()));
+                    MaterialPageRoute(builder: (context) => Educations()));
               },
             ),
             GestureDetector(

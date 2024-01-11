@@ -43,10 +43,7 @@ class _CompetencesState extends State<Competences> {
                           size: 40,
                         ),
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Cv_forms()));
+                          Navigator.pop(context);
                         },
                       )),
                   Text(

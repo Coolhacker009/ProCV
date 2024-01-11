@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_resume_template/flutter_resume_template.dart';
 import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/pages/homepages/cv_forms.dart';
 import 'package:pro_cv/utils/constants.dart';
@@ -86,7 +87,7 @@ class _ModelsCVTapState extends State<ModelsCVTap> {
                     child: Container(
                       child: GestureDetector(
                         child: Image.asset(
-                          "assets/img/img2.png",
+                          "assets/img/cv1.png",
                           width: MediaQuery.of(context).size.width * 0.4,
                           height: 220,
                         ),
@@ -94,7 +95,9 @@ class _ModelsCVTapState extends State<ModelsCVTap> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Cv_forms(),
+                              builder: (context) => Cv_forms(
+                                mode: TemplateTheme.modern,
+                              ),
                             ),
                           );
                         },
@@ -110,23 +113,35 @@ class _ModelsCVTapState extends State<ModelsCVTap> {
                           borderRadius: BorderRadius.circular(10)),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Container(
-                      child: Image.asset(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          height: 220,
-                          "assets/img/img2.png"),
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 2,
-                                color: Colors.grey.shade600,
-                                spreadRadius: 0)
-                          ],
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10)),
+                  GestureDetector(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Container(
+                        child: Image.asset(
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            height: 220,
+                            "assets/img/cv2.png"),
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  blurRadius: 2,
+                                  color: Colors.grey.shade600,
+                                  spreadRadius: 0)
+                            ],
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                     ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Cv_forms(
+                            mode: TemplateTheme.technical,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10),

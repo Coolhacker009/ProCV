@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:pro_cv/Services/dataService.dart';
 import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/pages/Cv_forms/Ajout_langue.dart';
 import 'package:pro_cv/pages/Cv_forms/ajout_education.dart';
@@ -12,6 +13,7 @@ import 'package:pro_cv/pages/homepages/models_cv.dart';
 import 'package:pro_cv/utils/constants.dart';
 import 'package:pro_cv/widgets/card.dart';
 import 'package:pro_cv/pages/homepages/models_cv.dart';
+import 'package:provider/provider.dart';
 
 class Langues extends StatefulWidget {
   const Langues({super.key});
@@ -43,10 +45,7 @@ class _LanguesState extends State<Langues> {
                           size: 40,
                         ),
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Cv_forms()));
+                          Navigator.pop(context);
                         },
                       )),
                   Text(
@@ -59,87 +58,89 @@ class _LanguesState extends State<Langues> {
                 ],
               )),
           Container(
-            child: Expanded(
-                child: ListView.builder(
-              itemCount: 1,
-              itemBuilder: (context, index) => Container(
-                  child: Container(
-                margin:
-                    EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 1),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 6,
-                          color: Colors.grey.shade600,
-                          spreadRadius: 1)
-                    ],
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20, top: 10),
-                      child: Text(
-                        'Français',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20, top: 10),
-                      child: Text(
-                        'Niveau',
-                        style: TextStyle(fontSize: 14),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 20, top: 2, bottom: 15),
+            child: Expanded(child: Consumer<DataService>(
+              builder: (context, dataService, child) {
+                return ListView.builder(
+                  itemCount: dataService.languages.length,
+                  itemBuilder: (context, index) => Container(
                       child: Container(
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                child: RatingBar.builder(
-                                    initialRating: 0,
-                                    minRating: 1,
-                                    direction: Axis.horizontal,
-                                    allowHalfRating: true,
-                                    itemCount: 5,
-                                    itemPadding:
-                                        EdgeInsets.symmetric(horizontal: 4),
-                                    itemBuilder: (context, _) => Icon(
-                                          Icons.star,
-                                          color: myPurple,
-                                          size: 10,
-                                        ),
-                                    onRatingUpdate: (rating) {
-                                      print(rating);
-                                    }),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(right: 12),
-                                child: GestureDetector(
-                                  child: Icon(
-                                    Icons.delete,
-                                    size: 30,
-                                    color: myPurple,
+                    margin: EdgeInsets.only(
+                        top: 20, left: 10, right: 10, bottom: 1),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 6,
+                              color: Colors.grey.shade600,
+                              spreadRadius: 1)
+                        ],
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20, top: 10),
+                          child: Text(
+                            dataService.languages[index].language!.language,
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20, top: 10),
+                          child: Text(
+                            'Niveau',
+                            style: TextStyle(fontSize: 14),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20, top: 2, bottom: 15),
+                          child: Container(
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    child: RatingBarIndicator(
+                                      rating: dataService
+                                          .languages[index].language!.level
+                                          .toDouble(),
+                                      itemBuilder: (context, _) => Icon(
+                                        Icons.star,
+                                        color: myPurple,
+                                        size: 10,
+                                      ),
+                                      direction: Axis.horizontal,
+                                      itemCount: 5,
+                                      itemPadding:
+                                          EdgeInsets.symmetric(horizontal: 4),
+                                    ),
                                   ),
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Cv_forms()));
-                                  },
-                                ),
-                              ),
-                              Container()
-                            ]),
-                      ),
+                                  Container(
+                                    margin: EdgeInsets.only(right: 12),
+                                    child: GestureDetector(
+                                      child: Icon(
+                                        Icons.delete,
+                                        size: 30,
+                                        color: myPurple,
+                                      ),
+                                      onTap: () {
+                                        // Navigator.push(
+                                        //     context,
+                                        //     MaterialPageRoute(
+                                        //         builder: (context) => Cv_forms()));
+                                      },
+                                    ),
+                                  ),
+                                  Container()
+                                ]),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              )),
+                  )),
+                );
+              },
             )),
           ),
           Container(

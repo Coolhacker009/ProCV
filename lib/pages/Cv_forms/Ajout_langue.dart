@@ -1,22 +1,40 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_resume_template/flutter_resume_template.dart';
+import 'package:pro_cv/Services/dataService.dart';
 import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/pages/Cv_forms/exp_pro.dart';
 import 'package:pro_cv/pages/Cv_forms/langues.dart';
 import 'package:pro_cv/pages/home.dart';
+import 'package:pro_cv/pages/model/languecv.dart';
 import 'package:pro_cv/utils/constants.dart';
 import 'package:pro_cv/widgets/card.dart';
+import 'package:provider/provider.dart';
 
 class Ajout_langue extends StatefulWidget {
-  const Ajout_langue({super.key});
-
+  const Ajout_langue({super.key, this.langueModel});
+  final LangueModel? langueModel;
   @override
   State<Ajout_langue> createState() => _Ajout_langueState();
 }
 
 class _Ajout_langueState extends State<Ajout_langue> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController langue = TextEditingController();
+  double level = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (widget.langueModel != null) {
+      langue.text = (widget.langueModel?.language?.language != null)
+          ? widget.langueModel!.language!.language
+          : '';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,6 +88,7 @@ class _Ajout_langueState extends State<Ajout_langue> {
                               Container(
                                 margin: EdgeInsets.only(bottom: 10),
                                 child: TextFormField(
+                                  controller: langue,
                                   decoration: InputDecoration(
                                       labelText: "Langue",
                                       hintText: "Entrez le nom de la langue",
@@ -112,7 +131,11 @@ class _Ajout_langueState extends State<Ajout_langue> {
                       children: [
                         Container(
                           child: RatingBar.builder(
-                              initialRating: 0,
+                              initialRating:
+                                  widget.langueModel?.language?.level != null
+                                      ? widget.langueModel!.language!.level
+                                          .toDouble()
+                                      : 0,
                               minRating: 1,
                               direction: Axis.horizontal,
                               allowHalfRating: true,
@@ -124,7 +147,7 @@ class _Ajout_langueState extends State<Ajout_langue> {
                                     size: 10,
                                   ),
                               onRatingUpdate: (rating) {
-                                print(rating);
+                                level = rating;
                               }),
                         ),
                       ]),
@@ -158,8 +181,14 @@ class _Ajout_langueState extends State<Ajout_langue> {
                                     borderRadius: BorderRadius.circular(20.0),
                                     side: BorderSide(color: myPurple)))),
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Exp_pro()));
+                      Language language = Language(langue.text, level.toInt());
+                      LangueModel langueModel = LangueModel(
+                          id: Provider.of<DataService>(context, listen: false)
+                              .getIdLangues(),
+                          language: language);
+                      Provider.of<DataService>(context, listen: false)
+                          .addLanguage(langueModel);
+                      Navigator.pop(context);
                     }),
               )),
         ],

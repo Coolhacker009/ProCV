@@ -45,9 +45,8 @@ class _Centre_interetState extends State<Centre_interet> {
                         ),
                         onTap: () {
                           Navigator.pop(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Cv_forms()));
+                            context,
+                          );
                         },
                       )),
                   Text(

@@ -23,18 +23,18 @@ class _LoginState extends State<Login> {
   @override
   void initState() {
     super.initState();
-    checkUserLoggedIn();
+    // checkUserLoggedIn();
   }
 
-  Future<void> checkUserLoggedIn() async {
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
-    }
-  }
+  // Future<void> checkUserLoggedIn() async {
+  //   User? user = FirebaseAuth.instance.currentUser;
+  //   if (user != null) {
+  //     Navigator.pushReplacement(
+  //       context,
+  //       MaterialPageRoute(builder: (context) => HomeScreen()),
+  //     );
+  //   }
+  // }
 
   String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {

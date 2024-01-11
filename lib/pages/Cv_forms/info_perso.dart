@@ -1,12 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:pro_cv/Services/dataService.dart';
 import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/pages/Cv_forms/image_picker.dart';
 import 'package:pro_cv/pages/home.dart';
 import 'package:pro_cv/pages/homepages/cv_forms.dart';
 import 'package:pro_cv/pages/signup.dart';
 import 'package:pro_cv/utils/constants.dart';
+import 'package:provider/provider.dart';
 
 class Info_perso extends StatefulWidget {
   const Info_perso({super.key});
@@ -18,6 +20,57 @@ class Info_perso extends StatefulWidget {
 class _Info_persoState extends State<Info_perso> {
   final _formKey = GlobalKey<FormState>();
   File? selectedImage;
+  TextEditingController nomController = TextEditingController();
+  TextEditingController professionController = TextEditingController();
+  TextEditingController adresseController = TextEditingController();
+  TextEditingController telController = TextEditingController();
+  TextEditingController mailController = TextEditingController();
+  TextEditingController preController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    nomController.text =
+        (Provider.of<DataService>(context, listen: false).infoProfil.nom !=
+                null)
+            ? Provider.of<DataService>(context, listen: false).infoProfil.nom!
+            : '';
+    professionController.text =
+        (Provider.of<DataService>(context, listen: false)
+                    .infoProfil
+                    .profession !=
+                null)
+            ? Provider.of<DataService>(context, listen: false)
+                .infoProfil
+                .profession!
+            : '';
+    adresseController.text = (Provider.of<DataService>(context, listen: false)
+                .infoProfil
+                .adresse !=
+            null)
+        ? Provider.of<DataService>(context, listen: false).infoProfil.adresse!
+        : '';
+    telController.text =
+        (Provider.of<DataService>(context, listen: false).infoProfil.tel !=
+                null)
+            ? Provider.of<DataService>(context, listen: false).infoProfil.tel!
+            : '';
+    mailController.text =
+        (Provider.of<DataService>(context, listen: false).infoProfil.email !=
+                null)
+            ? Provider.of<DataService>(context, listen: false).infoProfil.email!
+            : '';
+
+    preController.text = (Provider.of<DataService>(context, listen: false)
+                .infoProfil
+                .presentation !=
+            null)
+        ? Provider.of<DataService>(context, listen: false)
+            .infoProfil
+            .presentation!
+        : '';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,10 +94,7 @@ class _Info_persoState extends State<Info_perso> {
                             size: 40,
                           ),
                           onTap: () {
-                            Navigator.pop(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Cv_forms()));
+                            Navigator.pop(context);
                           },
                         ),
                       ),
@@ -98,6 +148,7 @@ class _Info_persoState extends State<Info_perso> {
                                   Container(
                                     margin: EdgeInsets.only(bottom: 10),
                                     child: TextFormField(
+                                      controller: nomController,
                                       decoration: InputDecoration(
                                           labelText: "Nom",
                                           hintText: "Entrez votre nom",
@@ -118,6 +169,7 @@ class _Info_persoState extends State<Info_perso> {
                                   Container(
                                     margin: EdgeInsets.only(bottom: 10),
                                     child: TextFormField(
+                                      controller: professionController,
                                       decoration: InputDecoration(
                                           labelText: "Profession",
                                           hintText: "Entrez votre profession",
@@ -137,6 +189,7 @@ class _Info_persoState extends State<Info_perso> {
                                   Container(
                                     margin: EdgeInsets.only(bottom: 10),
                                     child: TextFormField(
+                                      controller: adresseController,
                                       decoration: InputDecoration(
                                           labelText: "Adresse",
                                           hintText: "Entrez votre adresse",
@@ -156,6 +209,7 @@ class _Info_persoState extends State<Info_perso> {
                                   Container(
                                     margin: EdgeInsets.only(bottom: 10),
                                     child: TextFormField(
+                                      controller: telController,
                                       decoration: InputDecoration(
                                           labelText: "Téléphone",
                                           hintText: "Entrez votre téléphone",
@@ -175,6 +229,7 @@ class _Info_persoState extends State<Info_perso> {
                                   Container(
                                     margin: EdgeInsets.only(bottom: 10),
                                     child: TextFormField(
+                                      controller: mailController,
                                       decoration: InputDecoration(
                                           labelText: "Email",
                                           hintText: "Entrez votre email",
@@ -189,6 +244,28 @@ class _Info_persoState extends State<Info_perso> {
                                       },
                                       autovalidateMode:
                                           AutovalidateMode.onUserInteraction,
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(bottom: 10),
+                                    child: TextFormField(
+                                      controller: preController,
+                                      maxLines: 4,
+                                      decoration: InputDecoration(
+                                          labelText: "Présentation",
+                                          hintText: "Entrez votre présentation",
+                                          border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular((12))))),
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return "Veillez remplir ce champ";
+                                        }
+                                        return null;
+                                      },
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      keyboardType: TextInputType.emailAddress,
                                     ),
                                   ),
                                   Container(
@@ -222,11 +299,35 @@ class _Info_persoState extends State<Info_perso> {
                                         onPressed: () {
                                           if (_formKey.currentState!
                                               .validate()) {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        HomeScreen()));
+                                            Provider.of<DataService>(context,
+                                                    listen: false)
+                                                .infoProfil
+                                                .nom = nomController.text;
+                                            Provider.of<DataService>(context,
+                                                        listen: false)
+                                                    .infoProfil
+                                                    .profession =
+                                                professionController.text;
+                                            Provider.of<DataService>(context,
+                                                        listen: false)
+                                                    .infoProfil
+                                                    .adresse =
+                                                adresseController.text;
+                                            Provider.of<DataService>(context,
+                                                    listen: false)
+                                                .infoProfil
+                                                .tel = telController.text;
+                                            Provider.of<DataService>(context,
+                                                    listen: false)
+                                                .infoProfil
+                                                .email = mailController.text;
+
+                                            Provider.of<DataService>(context,
+                                                        listen: false)
+                                                    .infoProfil
+                                                    .presentation =
+                                                preController.text;
+                                            Navigator.pop(context);
                                           }
                                         }),
                                   ),

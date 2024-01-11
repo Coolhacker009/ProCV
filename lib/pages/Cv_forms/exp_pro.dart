@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pro_cv/Services/dataService.dart';
 import 'package:pro_cv/delayed_animation.dart';
 import 'package:pro_cv/pages/Cv_forms/ajout_exp.dart';
 import 'package:pro_cv/pages/Cv_forms/modif_exp.dart';
@@ -9,6 +10,7 @@ import 'package:pro_cv/pages/homepages/models_cv.dart';
 import 'package:pro_cv/utils/constants.dart';
 import 'package:pro_cv/widgets/card.dart';
 import 'package:pro_cv/pages/homepages/models_cv.dart';
+import 'package:provider/provider.dart';
 
 class Exp_pro extends StatefulWidget {
   const Exp_pro({super.key});
@@ -41,10 +43,7 @@ class _Exp_proState extends State<Exp_pro> {
                           size: 40,
                         ),
                         onTap: () {
-                          Navigator.pop(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Cv_forms()));
+                          Navigator.pop(context);
                         },
                       )),
                   Text(
@@ -57,84 +56,99 @@ class _Exp_proState extends State<Exp_pro> {
                 ],
               )),
           Container(
-            child: Expanded(
-                child: ListView.builder(
-              itemCount: 3,
-              itemBuilder: (context, index) => Container(
-                  child: Container(
-                margin:
-                    EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 1),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 6,
-                          color: Colors.grey.shade600,
-                          spreadRadius: 1)
-                    ],
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Pixel media 2.0',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Designer',
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 20, top: 6, bottom: 20),
+            child: Expanded(child: Consumer<DataService>(
+              builder: (context, dataService, child) {
+                return ListView.builder(
+                  itemCount: dataService.expreiences.length,
+                  itemBuilder: (context, index) => Container(
                       child: Container(
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      margin: EdgeInsets.only(right: 12),
-                                      child: GestureDetector(
-                                        child: Icon(
-                                          Icons.edit,
+                    margin: EdgeInsets.only(
+                        top: 20, left: 10, right: 10, bottom: 1),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 6,
+                              color: Colors.grey.shade600,
+                              spreadRadius: 1)
+                        ],
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            Provider.of<DataService>(context, listen: false)
+                                .expreiences[index]
+                                .experienceData!
+                                .experienceLocation,
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            Provider.of<DataService>(context, listen: false)
+                                .expreiences[index]
+                                .experienceData!
+                                .experienceTitle,
+                            style: TextStyle(fontSize: 15),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20, top: 6, bottom: 20),
+                          child: Container(
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(right: 12),
+                                          child: GestureDetector(
+                                            child: Icon(
+                                              Icons.edit,
+                                              size: 30,
+                                              color: myPurple,
+                                            ),
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          Modif_exp()));
+                                            },
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.delete,
                                           size: 30,
                                           color: myPurple,
-                                        ),
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      Modif_exp()));
-                                        },
-                                      ),
+                                        )
+                                      ],
                                     ),
-                                    Icon(
-                                      Icons.delete,
-                                      size: 30,
-                                      color: myPurple,
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(right: 20),
-                                child: Text('2013-2014'),
-                              )
-                            ]),
-                      ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(right: 20),
+                                    child: Text(Provider.of<DataService>(
+                                            context,
+                                            listen: false)
+                                        .expreiences[index]
+                                        .experienceData!
+                                        .experiencePeriod),
+                                  )
+                                ]),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              )),
+                  )),
+                );
+              },
             )),
           ),
           Container(

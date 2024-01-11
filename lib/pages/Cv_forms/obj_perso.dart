@@ -42,10 +42,7 @@ class _Obj_persoState extends State<Obj_perso> {
                               size: 40,
                             ),
                             onTap: () {
-                              Navigator.pop(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Cv_forms()));
+                              Navigator.pop(context);
                             },
                           )),
                       Text(

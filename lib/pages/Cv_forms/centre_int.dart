@@ -44,10 +44,7 @@ class _Centre_intState extends State<Centre_int> {
                           size: 40,
                         ),
                         onTap: () {
-                          Navigator.pop(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Cv_forms()));
+                          Navigator.pop(context);
                         },
                       )),
                   Text(
