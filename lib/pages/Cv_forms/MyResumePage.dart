@@ -103,14 +103,25 @@ Responsibilities:
     print('${dir.path}/moncv.pdf');
 
     await pdfFile.writeAsBytes(await pdf.save()).then((value) => {
-          showDialog(
-              context: context,
-              builder: (BuildContext context) => Dialog(
-                    child: Text(
-                      "Fichier exporté avec succes",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ))
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: Colors.green[600],
+              content: const Text(
+                'Fichier exporté avec succès',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              behavior: SnackBarBehavior.floating,
+              margin: EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.height - 100,
+                left: 10,
+                right: 10,
+              ),
+            ),
+          )
         });
   }
 

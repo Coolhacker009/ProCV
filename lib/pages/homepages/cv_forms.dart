@@ -88,15 +88,27 @@ class _Cv_formsState extends State<Cv_forms> {
                                         .length <
                                     1)
                               {
-                                showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) => Dialog(
-                                          child: Text(
-                                            "veillez renseignez les différents champs",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ))
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    backgroundColor: Colors.orange[600],
+                                    content: const Text(
+                                      'Veuillez remplir les formulaires',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    behavior: SnackBarBehavior.floating,
+                                    margin: EdgeInsets.only(
+                                      bottom:
+                                          MediaQuery.of(context).size.height -
+                                              100,
+                                      left: 10,
+                                      right: 10,
+                                    ),
+                                  ),
+                                )
                               }
                             else
                               {

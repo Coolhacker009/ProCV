@@ -67,6 +67,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(primaryColor: myPurple, fontFamily: "Poppins"),
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        home: HomeScreen());
+        home: OnboardingScreen());
   }
 }

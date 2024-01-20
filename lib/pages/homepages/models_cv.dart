@@ -143,42 +143,6 @@ class _ModelsCVTapState extends State<ModelsCVTap> {
                       );
                     },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Container(
-                      child: Image.asset(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          height: 220,
-                          "assets/img/img2.png"),
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 2,
-                                color: Colors.grey.shade600,
-                                spreadRadius: 0)
-                          ],
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Container(
-                      child: Image.asset(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          height: 220,
-                          "assets/img/img2.png"),
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 2,
-                                color: Colors.grey.shade600,
-                                spreadRadius: 0)
-                          ],
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
-                  )
                 ],
               )
             ],
